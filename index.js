@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const config = require('./config.json');
-const prefix = config.prefix;
 
 const mod = require('./commands/moderation/kick.js');
 const de = require('./commands/random/dice_roll.js');
@@ -16,17 +15,19 @@ bot.on('message', message => {
   const command = args.shift().toLowerCase();
   
   switch (command) {
+    case "dice" :
+      var roll = Math.floor(Math.random() * 6) + 1;
+      message.reply("Vous êtes tombé sur un" + roll);
+      break;
     case "kick" :
       let reason = args.slice(1).join(" ");
-      console.log(mod);
+      const member = message.mentions.members.first();
+      member.kick(reason.join(" "));
       break;
     case "say" :
       let text = args.join(" ");
       message.channel.send(text);
       break;
-    case "dice" :
-      console.log(de);
-      break; 
   }
 });
 
