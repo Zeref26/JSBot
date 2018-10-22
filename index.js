@@ -4,16 +4,13 @@ const config = require('./config.json');
 const prefix = config.prefix;
 
 bot.registry.registerGroup('random', 'Random');
+bot.registry.registerGroup('moderation', 'Moderation');
+bot.registry.registerGroup('messaging', 'Messaging');
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + "/commands");
 
 bot.on('ready', () => {
     console.log('Bot is ready !');
-});
-bot.on('message', message => {
-  if (message.content == prefix+"ping") {
-    message.channel.send("Pong !");
-  }
 });
 
 bot.login(config.token);
