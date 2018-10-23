@@ -1,4 +1,5 @@
 const Commando = require('discord.js-commando');
+const Discord = require('discord.js');
 
 class ClearCommand extends Commando.Command {
     constructor(client) {
@@ -6,16 +7,14 @@ class ClearCommand extends Commando.Command {
             name : 'clear',
             group : 'messaging',
             memberName : 'clear',
-            description : 'Efface un nombre de messages.'
+            description : 'Supprime un nombre de message.'
         });
     }
 
     async run(message, args) {
-        args = message.content.slice(1).trim().split(/ +/g);
-        let x = args[1];
-        for(let i=1; i<=x; i++){
-            message.delete().catch(console.error);
-        }
+        message.delete();
+        const arg = message.content.slice(1).trim().split(/ +/g);
+        message.channel.bulkDelete(arg.slice(1).join(" "));
     }
 }
 
