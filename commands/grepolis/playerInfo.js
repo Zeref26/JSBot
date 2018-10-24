@@ -1,6 +1,5 @@
 const Commando = require('discord.js-commando');
 const Discord = require('discord.js');
-var request = require('request');
 
 class PlayerInfoCommand extends Commando.Command {
     constructor(client) {
@@ -13,6 +12,7 @@ class PlayerInfoCommand extends Commando.Command {
     }
 
     async run(message, args) {
+        var request = require('request');
         request('http://fr111.grepolis.com/data/players.txt').pipe(fs.createWriteStream('players.txt'));
     }
 }
