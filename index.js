@@ -5,6 +5,7 @@ const prefix = config.prefix;
 
 bot.registry.registerGroup('random', 'Random');
 bot.registry.registerGroup('moderation', 'Moderation');
+bot.registry.registerGroup('grepolis', 'Grepolis');
 bot.registry.registerGroup('messaging', 'Messaging');
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + "/commands");
