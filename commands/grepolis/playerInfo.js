@@ -13,7 +13,7 @@ class PlayerInfoCommand extends Commando.Command {
 
     async run(message, args) {
         var request = require('request');
-        message.channel.bulkDelete(2);
+        message.delete();
         request.get('https://fr111.grepolis.com/data/players.txt', function (error, response, body) {
             if (!error && response.statusCode == 200) {    
                 const arg = message.content.slice(1).trim().split(/ +/g);
