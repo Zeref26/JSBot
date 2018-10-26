@@ -160,10 +160,6 @@ class PlayerInfoCommand extends Commando.Command {
                                 value: param
                             },
                             {
-                                name: "ID de l'alliance",
-                                value: id_alliance
-                            },
-                            {
                                 name: "Nom de l'alliance",
                                 value: alliance
                             },
