@@ -7,7 +7,7 @@ class ClearCommand extends Commando.Command {
             name : 'clear',
             group : 'messaging',
             memberName : 'clear',
-            description : 'Supprime un nombre de message.'
+            description : 'Supprime un nombre (paramètre n°1) de message.'
         });
     }
 

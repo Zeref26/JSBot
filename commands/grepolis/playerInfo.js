@@ -8,7 +8,7 @@ class PlayerInfoCommand extends Commando.Command {
             name : 'player',
             group : 'grepolis',
             memberName : 'player',
-            description : 'Renvoie les informations du joueur nommé.'
+            description : 'Renvoie les informations du joueur (paramètre n°1).'
         });
     }
 
@@ -151,7 +151,7 @@ class PlayerInfoCommand extends Commando.Command {
                         message.channel.send({embed:{
                             color: 0xFFBF00,
                             author: {
-                                name: "Informations de "+donnees[i],
+                                name: "Informations de "+param,
                                 icon_url: message.channel.client.user.avatarURL
                             },
                             fields: [{
