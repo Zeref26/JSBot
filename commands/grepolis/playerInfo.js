@@ -152,10 +152,6 @@ class PlayerInfoCommand extends Commando.Command {
                                 icon_url: message.channel.client.user.avatarURL
                             },
                             fields: [{
-                                name: "ID",
-                                value: id
-                            },
-                            {
                                 name: "Pseudo",
                                 value: param
                             },
