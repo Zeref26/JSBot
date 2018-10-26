@@ -71,7 +71,6 @@ class PlayerInfoCommand extends Commando.Command {
                         for(i = 0; i<donnees.length&&par!=donnees[i]; i++) {
                         }
                         let id;
-                        let pseudo;
                         let id_alliance;
                         let alliance = "";
                         let points;
@@ -79,7 +78,6 @@ class PlayerInfoCommand extends Commando.Command {
                         let nb_villes;
                         if (i<donnees.length) {
                             id = donnees[i-1];
-                            pseudo = donnees[i];
                             if (donnees[i+1]!="") {
                                 id_alliance = donnees[i+1];
                                 var data = str2;
@@ -141,7 +139,6 @@ class PlayerInfoCommand extends Commando.Command {
                             nb_villes = donnees[i+4];
                         } else {
                             id = "Non défini";
-                            pseudo = "Non défini";
                             id_alliance = "Non défini";
                             alliance = "Non défini";
                             points = "Non défini";
@@ -161,10 +158,6 @@ class PlayerInfoCommand extends Commando.Command {
                             {
                                 name: "Pseudo",
                                 value: param
-                            },
-                            {
-                                name: "Pseudo URL",
-                                value: pseudo
                             },
                             {
                                 name: "ID de l'alliance",
