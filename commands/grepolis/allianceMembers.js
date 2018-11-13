@@ -15,13 +15,13 @@ class AllianceInfoCommand extends Commando.Command {
     async run(message, args) {
         message.delete();
         var str = '';
-        var req = https.request('https://fr111.grepolis.com/data/alliances.txt', function(response) {
+        var req = https.request('https://fr113.grepolis.com/data/alliances.txt', function(response) {
             response.on('data', function (chunk) {
                 str += chunk;
             });
             response.on('end', function () {
                 var str2 = '';
-                var req2 = https.request('https://fr111.grepolis.com/data/players.txt', function(response2) {
+                var req2 = https.request('https://fr113.grepolis.com/data/players.txt', function(response2) {
                     response2.on('data', function (chunk) {
                         str2 += chunk;
                     });
