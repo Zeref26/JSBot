@@ -74,7 +74,8 @@ class PlayerInfoCommand extends Commando.Command {
                                         par = par.concat(param.charAt(i));
                                     }
                                 }
-                                for(i = 0; i<donnees.length&&par!=donnees[i]; i++) {
+                                for(i = 1; i<donnees.length&&par!=donnees[i]; i++) {
+                                    i += 5;
                                 }
                                 let id;
                                 let id_alliance;
@@ -102,6 +103,7 @@ class PlayerInfoCommand extends Commando.Command {
                                         }
                                         var j;
                                         for(j = 0; j<donnees2.length&&id_alliance!=donnees2[j]; j++) {
+                                            j += 5;
                                         }
                                         url_alliance = donnees2[j+1];
                                         for(j = 0; j<url_alliance.length; j++) {

@@ -68,7 +68,8 @@ class AllianceInfoCommand extends Commando.Command {
                                 par = par.concat(param.charAt(i));
                             }
                         }
-                        for(i = 0; i<donnees.length&&par!=donnees[i]; i++) {
+                        for(i = 1; i<donnees.length&&par!=donnees[i]; i++) {
+                            i += 5;
                         }
                         let id_alliance;
                         let points_alliance;
@@ -96,59 +97,58 @@ class AllianceInfoCommand extends Commando.Command {
                                     mot = "";
                                 }
                             }
-                            for(j = 0; j<donnees2.length; j++){
-                                if (j%6!=4) {
-                                    if (donnees2[j]==id_alliance){
-                                        let psdo = donnees2[j-1];
-                                        var pseudo = "";
-                                        for(var k = 0; k<psdo.length; k++) {
-                                            if (psdo.charAt(k)!='%'&&psdo.charAt(k)!='+') {
-                                                pseudo = pseudo.concat(psdo.charAt(k));
-                                            } else if (psdo.charAt(k)=='%') {
-                                                if (psdo.charAt(k+1)=='C'&&psdo.charAt(k+2)=='3') {
-                                                    if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='9') {
-                                                        pseudo = pseudo.concat('é');
-                                                    } else if (psdo.charAt(k+4)=='8'&&psdo.charAt(k+5)=='9') {
-                                                        pseudo = pseudo.concat('É');
-                                                    } else if (psdo.charAt(k+4)=='8'&&psdo.charAt(k+5)=='8') {
-                                                        pseudo = pseudo.concat('È');
-                                                    } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='8') {
-                                                        pseudo = pseudo.concat('è');
-                                                    } else if (psdo.charAt(k+4)=='B'&&psdo.charAt(k+5)=='4') {
-                                                        pseudo = pseudo.concat('ô');
-                                                    } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='0') {
-                                                        pseudo = pseudo.concat('à');
-                                                    } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='E') {
-                                                        pseudo = pseudo.concat('î');
-                                                    } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='F') {
-                                                        pseudo = pseudo.concat('ï');
-                                                    }
-                                                    k += 5;
-                                                } else if (psdo.charAt(k+1)=='2'&&psdo.charAt(k+2)=='7') {
-                                                    pseudo = pseudo.concat('\'');
-                                                    k += 2;
-                                                } else if (psdo.charAt(k+1)=='2'&&psdo.charAt(k+2)=='A') {
-                                                    pseudo = pseudo.concat('*');
-                                                    k += 2;
+                            for(j = 2; j<donnees2.length; j++){
+                                if (donnees2[j]==id_alliance){
+                                    let psdo = donnees2[j-1];
+                                    var pseudo = "";
+                                    for(var k = 0; k<psdo.length; k++) {
+                                        if (psdo.charAt(k)!='%'&&psdo.charAt(k)!='+') {
+                                            pseudo = pseudo.concat(psdo.charAt(k));
+                                        } else if (psdo.charAt(k)=='%') {
+                                            if (psdo.charAt(k+1)=='C'&&psdo.charAt(k+2)=='3') {
+                                                if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='9') {
+                                                    pseudo = pseudo.concat('é');
+                                                } else if (psdo.charAt(k+4)=='8'&&psdo.charAt(k+5)=='9') {
+                                                    pseudo = pseudo.concat('É');
+                                                } else if (psdo.charAt(k+4)=='8'&&psdo.charAt(k+5)=='8') {
+                                                    pseudo = pseudo.concat('È');
+                                                } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='8') {
+                                                    pseudo = pseudo.concat('è');
+                                                } else if (psdo.charAt(k+4)=='B'&&psdo.charAt(k+5)=='4') {
+                                                    pseudo = pseudo.concat('ô');
+                                                } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='0') {
+                                                    pseudo = pseudo.concat('à');
+                                                } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='E') {
+                                                    pseudo = pseudo.concat('î');
+                                                } else if (psdo.charAt(k+4)=='A'&&psdo.charAt(k+5)=='F') {
+                                                    pseudo = pseudo.concat('ï');
                                                 }
-                                            } else {
-                                                pseudo = pseudo.concat(" ");
+                                                k += 5;
+                                            } else if (psdo.charAt(k+1)=='2'&&psdo.charAt(k+2)=='7') {
+                                                pseudo = pseudo.concat('\'');
+                                                k += 2;
+                                            } else if (psdo.charAt(k+1)=='2'&&psdo.charAt(k+2)=='A') {
+                                                pseudo = pseudo.concat('*');
+                                                k += 2;
                                             }
+                                        } else {
+                                            pseudo = pseudo.concat(" ");
                                         }
-                                        if (nb_mem<=20) {
-                                            membres_info[0] = membres_info[0].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
-                                        } else if (nb_mem<=40) {
-                                            membres_info[1] = membres_info[1].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
-                                        } else if (nb_mem<=60) {
-                                            membres_info[2] = membres_info[2].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
-                                        } else if (nb_mem<=80) {
-                                            membres_info[3] = membres_info[3].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
-                                        } else if (nb_mem<=100) {
-                                            membres_info[4] = membres_info[4].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
-                                        }
-                                        nb_mem += 1;
                                     }
+                                    if (nb_mem<=20) {
+                                        membres_info[0] = membres_info[0].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
+                                    } else if (nb_mem<=40) {
+                                        membres_info[1] = membres_info[1].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
+                                    } else if (nb_mem<=60) {
+                                        membres_info[2] = membres_info[2].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
+                                    } else if (nb_mem<=80) {
+                                        membres_info[3] = membres_info[3].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
+                                    } else if (nb_mem<=100) {
+                                        membres_info[4] = membres_info[4].concat("**¤** "+pseudo+" : "+donnees2[j+1]+" points."+'\n');
+                                    }
+                                    nb_mem += 1;
                                 }
+                                j += 5;
                             }
                         }
                         if (nb_mem<=20) {
