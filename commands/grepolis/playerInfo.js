@@ -15,19 +15,78 @@ class PlayerInfoCommand extends Commando.Command {
     async run(message, args) {
         message.delete();
         var str = '';
-        var req = https.request('https://fr113.grepolis.com/data/players.txt', function(response) {
+        const abcd = message.content.slice(1).trim().split(/ +/g);
+        let abcde = (String)(abcd[1]).toLowerCase();
+        var monde;
+        var monde_nom;
+        if (abcde=="pharès") {
+            monde = 114;
+            monde_nom = "Pharès";
+        } else if (abcde=="phares") {
+            monde = 114;
+            monde_nom = "Pharès";
+        } else if (abcde=="modon") {
+            monde = 111;
+            monde_nom = "Modon";
+        } else if (abcde=="oréos") {
+            monde = 113;
+            monde_nom = "Oréos";
+        } else if (abcde=="oreos") {
+            monde = 113;
+            monde_nom = "Oréos";
+        } else if (abcde=="amisos") {
+            monde = 101;
+            monde_nom = "Amisos";
+        } else if (abcde=="byblos") {
+            monde = 102;
+            monde_nom = "Byblos";
+        } else if (abcde=="carystos") {
+            monde = 103;
+            monde_nom = "Carystos";
+        } else if (abcde=="dion") {
+            monde = 104;
+            monde_nom = "Dion";
+        } else if (abcde=="épidamne") {
+            monde = 105;
+            monde_nom = "Epidamne";
+        } else if (abcde=="epidamne") {
+            monde = 105;
+            monde_nom = "Epidamne";
+        } else if (abcde=="gortyne") {
+            monde = 106;
+            monde_nom = "Gortyne";
+        } else if (abcde=="héliopolis") {
+            monde = 107;
+            monde_nom = "Héliopolis";
+        } else if (abcde=="heliopolis") {
+            monde = 107;
+            monde_nom = "Héliopolis";
+        } else if (abcde=="istros") {
+            monde = 108;
+            monde_nom = "Istros";
+        } else if (abcde=="kastoria") {
+            monde = 109;
+            monde_nom = "Kastoria";
+        } else if (abcde=="lentini") {
+            monde = 110;
+            monde_nom = "Lentini";
+        } else if (abcde=="naucratis") {
+            monde = 112;
+            monde_nom = "Naucratis";
+        }
+        var req = https.request('https://fr'+monde+'.grepolis.com/data/players.txt', function(response) {
             response.on('data', function (chunk) {
                 str += chunk;
             });
             response.on('end', function () {
                 var str2 = '';
-                var req2 = https.request('https://fr113.grepolis.com/data/alliances.txt', function(response2) {
+                var req2 = https.request('https://fr'+monde+'.grepolis.com/data/alliances.txt', function(response2) {
                     response2.on('data', function (chunk) {
                         str2 += chunk;
                     });
                     response2.on('end', function () {
                         var str3 = '';
-                        var req3 = https.request('https://fr113.grepolis.com/data/towns.txt', function(response3) {
+                        var req3 = https.request('https://fr'+monde+'.grepolis.com/data/towns.txt', function(response3) {
                             response3.on('data', function (chunk) {
                                 str3 += chunk;
                             });
@@ -45,7 +104,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     }
                                 }
                                 var i;
-                                var param = (String)(arg.slice(1).join(" "));
+                                var param = (String)(arg.slice(2).join(" "));
                                 var par = "";
                                 for(i = 0; i<param.length; i++){
                                     if (param.charAt(i)==" "){
@@ -228,7 +287,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     message.channel.send({embed:{
                                         color: 0xFFBF00,
                                         author: {
-                                            name: "Informations de "+param,
+                                            name: "Informations de "+param+" sur "+monde_nom,
                                             icon_url: message.channel.client.user.avatarURL
                                         },
                                         fields: [{
@@ -265,7 +324,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     message.channel.send({embed:{
                                         color: 0xFFBF00,
                                         author: {
-                                            name: "Informations de "+param,
+                                            name: "Informations de "+param+" sur "+monde_nom,
                                             icon_url: message.channel.client.user.avatarURL
                                         },
                                         fields: [{
@@ -306,7 +365,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     message.channel.send({embed:{
                                         color: 0xFFBF00,
                                         author: {
-                                            name: "Informations de "+param,
+                                            name: "Informations de "+param+" sur "+monde_nom,
                                             icon_url: message.channel.client.user.avatarURL
                                         },
                                         fields: [{
@@ -351,7 +410,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     message.channel.send({embed:{
                                         color: 0xFFBF00,
                                         author: {
-                                            name: "Informations de "+param,
+                                            name: "Informations de "+param+" sur "+monde_nom,
                                             icon_url: message.channel.client.user.avatarURL
                                         },
                                         fields: [{
@@ -400,7 +459,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     message.channel.send({embed:{
                                         color: 0xFFBF00,
                                         author: {
-                                            name: "Informations de "+param,
+                                            name: "Informations de "+param+" sur "+monde_nom,
                                             icon_url: message.channel.client.user.avatarURL
                                         },
                                         fields: [{
