@@ -39,6 +39,14 @@ bot.on("message", (message) => {
             id: role.id,
             allow: ['READ_MESSAGES']
         }]);
+        message.guild.createChannel(monde_nom+" "+nom_alliance+" offensive", 'text', [{
+            id: role.id,
+            allow: ['READ_MESSAGES']
+        }]);
+        message.guild.createChannel(monde_nom+" "+nom_alliance+" défensive", 'text', [{
+            id: role.id,
+            allow: ['READ_MESSAGES']
+        }]);
     }
 });
 
