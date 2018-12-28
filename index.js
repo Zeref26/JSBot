@@ -5,6 +5,14 @@ const prefix = config.prefix;
 
 bot.on('ready', () => {
     console.log('Bot is ready !');
+    var interval = setInterval (function () {
+        let date = new Date();
+        let m = date.getMinutes()
+        let s = date.getSeconds();
+        if (m == 0 && s == 0) {
+            let mess = bot.channels.find('name',"centre-de-la-zone").send("Mutation de la zone !")
+        }
+    }, 1 * 1000);
 });
 
 bot.on("message", (message) => {
