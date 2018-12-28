@@ -8,7 +8,24 @@ bot.on('ready', () => {
         let m = date.getMinutes()
         let s = date.getSeconds();
         if (m == 0 && s == 0) {
-            let mess = bot.channels.find('name',"centre-de-la-zone").send("Mutation de la zone !")
+            let zone_n = Math.floor((Math.random() * 5) + 1);
+            switch (zone_n) {
+                case 1 :
+                    bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n L'endroit se transforme en une grande ville inhabitée avec des bâtiments sombres faits en métal dur]**")
+                    break;
+                case 2 :
+                    bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n La zone se transforme en une jungle dense et humide, l'ensemble de l'endroit est recouvert de plantes et de rochers]**")
+                    break;
+                case 3 :
+                    bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n Un vent glacial se lève et la zone se transforme en peine enneigée, la température ambiante est de -5 degrés et les mouvements dans la neige sont difficiles]**")
+                    break;
+                case 4 :
+                    bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n Une chaleur intense se lève dans la zone, le sol se fragmente par endroit laissant s'échapper des lacs de lave]**")
+                    break;
+                case 5 :
+                    bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n L'endroit se vide complètement et devient une simple plaine sans aucun arbre, juste de l'herbe à perte de vue, cependant la gravité ici est extrêmement élevée, les mouvements sont difficiles et les avatars lents perdent 50 Pv par minutes]**")
+                    break;
+                }
         }
     }, 1 * 1000);
 });
