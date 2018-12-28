@@ -45,6 +45,9 @@ bot.on("message", (message) => {
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
             }
             break;
+        case "help" :
+            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n _*Burst Link*_ : Active le Brain Burst et emmène dans le monde accéléré. \n _*Burst Out*_ : Permet de sortir du monde accéléré. \n _*Unlimited Burst Link*_ : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au pint de sortie.")
+            break;
     }
 });
 
