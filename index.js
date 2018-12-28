@@ -1,6 +1,5 @@
 const Discord = require('discord.js-commando');
 const bot = new Discord.Client();
-const config = require('./config.json');
 
 bot.on('ready', () => {
     console.log('Bot is ready !');
