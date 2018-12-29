@@ -34,53 +34,51 @@ bot.on("message", (message) => {
     message.guild.client.user.setActivity("Accel World");
     message.guild.client.user.setAvatar("img.png");
     let mess = message.content.toLowerCase();
-    if (!message.content.startsWith("!")) {
-        switch (mess) {
-            case "burst link" :
+    switch (mess) {
+        case "burst link" :
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
+                message.delete();
+            } else {
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+            }
+        } else {
+            message.delete();
+        }
+        break;
+        case "burst out" :
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
                 if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
+                    if (message.channel.name == "point-de-sortie") {
+                        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                        message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
+                    } else {
+                        message.delete();
+                    }
+                } else {
+                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                    message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                }
+            } else {
+                message.delete();
+            }
+            break;
+        case "unlimited burst link" :
+            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+                if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
                     message.delete();
                 } else {
-                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                 }
             } else {
                 message.delete();
             }
             break;
-            case "burst out" :
-                if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-                    if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
-                        if (message.channel.name == "point-de-sortie") {
-                            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
-                            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
-                        } else {
-                            message.delete();
-                        }
-                    } else {
-                        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
-                        message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
-                    }
-                } else {
-                    message.delete();
-                }
-                break;
-            case "unlimited burst link" :
-                if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-                    if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
-                        message.delete();
-                    } else {
-                        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
-                        message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                    }
-                } else {
-                    message.delete();
-                }
-                break;
-            case "help" :
-                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
-                break;
-        }
+        case "help" :
+            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
+            break;
     }
 });
 
