@@ -77,9 +77,6 @@ bot.on("message", (message) => {
             break;
         case "help" :
             message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.");
-            if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-                message.author.send("\n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur (ATTENTION : Pour des raisons de sécurité, il faudra ajouter le rôle Hors-RP manuellement.)");
-            }
             break;
     }
     if(message.content.startsWith("-valide")){
