@@ -32,7 +32,6 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     message.guild.client.user.setActivity("Accel World");
-    message.guild.client.user.setAvatar("img.png");
     let mess = message.content.toLowerCase();
     switch (mess) {
         case "burst link" :
@@ -78,7 +77,23 @@ bot.on("message", (message) => {
             break;
         case "help" :
             message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
+            if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+                message.author.send("\n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur (ATTENTION : Pour des raisons de sécurité, il faudra ajouter le rôle Hors-RP manuellement.)");
+            }
             break;
+    }
+    if(message.content.startsWith("-valide")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            const args = message.content.slice(0).trim().split(/ +/g);
+            let member = message.mentions.members.first();
+            member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
+            member.addRole(message.guild.roles.find('name',"Burst Linker"));
+            member.addRole(message.guild.roles.find('name',"Niveau 1"));
+            member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+            member.addRole(message.guild.roles.find('name',"------------------------------"));
+            member.addRole(message.guild.roles.find('name',"Monde réel"));
+            member.addRole(message.guild.roles.find('name',args[2]));
+        }
     }
 });
 
