@@ -42,6 +42,7 @@ bot.on("message", (message) => {
             } else {
                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
             }
         } else {
             message.delete();
@@ -53,12 +54,14 @@ bot.on("message", (message) => {
                     if (message.channel.name == "point-de-sortie") {
                         message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
                         message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
+                        message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
                     } else {
                         message.delete();
                     }
                 } else {
                     message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
                 }
             } else {
                 message.delete();
@@ -71,6 +74,7 @@ bot.on("message", (message) => {
                 } else {
                     message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
                 }
             } else {
                 message.delete();
