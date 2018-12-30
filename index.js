@@ -97,6 +97,7 @@ bot.on("message", (message) => {
             member.addRole(message.guild.roles.find('name',"Burst Linker"));
             member.addRole(message.guild.roles.find('name',"Niveau 1"));
             member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+            member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
             member.addRole(message.guild.roles.find('name',"------------------------------"));
             member.addRole(message.guild.roles.find('name',"Monde réel"));
             member.addRole(message.guild.roles.find('name',args[2]));
