@@ -92,6 +92,7 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             const args = message.content.slice(0).trim().split(/ +/g);
             let member = message.mentions.members.first();
+            member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
             member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
             member.addRole(message.guild.roles.find('name',"Burst Linker"));
             member.addRole(message.guild.roles.find('name',"Niveau 1"));
