@@ -31,8 +31,6 @@ bot.on('ready', () => {
 });
 
 bot.on("message", (message) => {
-    message.guild.client.user.setActivity("Accel World");
-    message.guild.client.user.setAvatar("img.png");
     let mess = message.content.toLowerCase();
     switch (mess) {
         case "burst link" :
