@@ -3,6 +3,8 @@ const bot = new Discord.Client();
 
 bot.on('ready', () => {
     console.log('Bot is ready !');
+    bot.user.setActivity("Accel World");
+    bot.user.setAvatar("img.png");
     var interval = setInterval (function () {
         let date = new Date();
         let m = date.getMinutes()
@@ -31,8 +33,6 @@ bot.on('ready', () => {
 });
 
 bot.on("message", (message) => {
-    message.guild.client.user.setActivity("Accel World");
-    message.guild.client.user.setAvatar("img.png");
     let mess = message.content.toLowerCase();
     switch (mess) {
         case "burst link" :
@@ -77,7 +77,11 @@ bot.on("message", (message) => {
             }
             break;
         case "help" :
-            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.");
+            if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur (ATTENTION : Pour des raisons de sécurité, il faudra ajouter le rôle Hors-RP manuellement.)");
+            } else {
+                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
+            }
             break;
     }
     if(message.content.startsWith("-valide")){
