@@ -31,7 +31,7 @@ bot.on('ready', () => {
 });
 
 bot.on("message", (message) => {
-    message.guild.client.setAvatar("img.png");
+    message.guild.client.user.setAvatar("img.png");
     let mess = message.content.toLowerCase();
     switch (mess) {
         case "burst link" :
