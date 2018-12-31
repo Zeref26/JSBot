@@ -7,7 +7,8 @@ bot.on('ready', () => {
     bot.user.setAvatar("img.png");
     var interval = setInterval (function () {
         let date = new Date();
-        let m = date.getMinutes()
+        let m = date.getHours();
+        let m = date.getMinutes();
         let s = date.getSeconds();
         if (m == 0 && s == 0) {
             let zone_n = Math.floor((Math.random() * 5) + 1);
@@ -28,6 +29,8 @@ bot.on('ready', () => {
                     bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n L'endroit se vide complètement et devient une simple plaine sans aucun arbre, juste de l'herbe à perte de vue, cependant la gravité ici est extrêmement élevée, les mouvements sont difficiles et les avatars lents perdent 50 Pv par minutes]**")
                     break;
                 }
+        } else if (h == 0 && m ==0 && s ==0) {
+            bot.channels.find('name',"général").send("Bonne année !!!");
         }
     }, 1 * 1000);
 });
