@@ -7,7 +7,7 @@ bot.on('ready', () => {
     bot.user.setAvatar("img.png");
     var interval = setInterval (function () {
         let date = new Date();
-        let m = date.getHours();
+        let h = date.getHours();
         let m = date.getMinutes();
         let s = date.getSeconds();
         if (m == 0 && s == 0) {
@@ -30,7 +30,7 @@ bot.on('ready', () => {
                     break;
                 }
         } else if (h == 0 && m ==0 && s ==0) {
-            bot.channels.find('name',"général").send("Bonne année !!!");
+            bot.channels.find('name',"général").send("@everyone Bonne année !!!");
         }
     }, 1 * 1000);
 });
