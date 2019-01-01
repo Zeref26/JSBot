@@ -112,8 +112,14 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             const args = message.content.slice(0).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            fs.readFile(member.id+".txt",function(err,data) {
-                message.channel.send(data.toString());
+            fs.exists(member.id+".txt",function(boo) {
+                if (boo==true) {
+                    fs.readFile(member.id+".txt",function(err,data) {
+                        message.channel.send("Points Burst de "+member+" : "+data.toString());
+                    });
+                } else {
+                    message.channel.send("Points Burst de "+member+" : 0");
+                }
             });
         }
     }
