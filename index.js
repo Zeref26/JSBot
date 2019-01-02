@@ -113,17 +113,17 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-info")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-            let bl = 0;
-            let rouge = 0;
-            let bleu = 0;
-            let jaune = 0;
-            let vert = 0;
-            let violet = 0;
-            let noir = 0;
-            let blanc = 0;
-            let metal = 0;
-            let membres = message.guild.members.array();
-            for (let i = 0; i>membres.length; i++) {
+            var bl = 0;
+            var rouge = 0;
+            var bleu = 0;
+            var jaune = 0;
+            var vert = 0;
+            var violet = 0;
+            var noir = 0;
+            var blanc = 0;
+            var metal = 0;
+            var membres = message.guild.members.array();
+            for (var i = 0; i<membres.length; i++) {
                 if(membres[i].roles.exists('name',"Burst Linker")) {
                     bl += 1;
                     if (membres[i].roles.exists('name',"Rouge")) {
@@ -145,7 +145,7 @@ bot.on("message", (message) => {
                     }
                 }
             }
-            message.channel.send("Voici les informations du serveur : \n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal);
+            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal);
         }
     }
 });
