@@ -5,7 +5,6 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
     bot.user.setActivity("Accel World");
     bot.user.setAvatar("img.png");
-    bot.user.setUsername("");
     var interval = setInterval (function () {
         let date = new Date();
         let m = date.getMinutes()
@@ -35,6 +34,7 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
+    message.guild.members.find('displayName',"PrivateChat").setNickname("");
     switch (mess) {
         case "burst link" :
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
