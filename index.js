@@ -111,6 +111,43 @@ bot.on("message", (message) => {
             let collec = message.guild.channels.find('name',"compteur-de-points").fetchMessages();
         }
     }
+    if(message.content.startsWith("-info")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            let bl = 0;
+            let rouge = 0;
+            let bleu = 0;
+            let jaune = 0;
+            let vert = 0;
+            let violet = 0;
+            let noir = 0;
+            let blanc = 0;
+            let metal = 0;
+            let membres = message.guild.members.array();
+            for (let i = 0; i>membres.length; i++) {
+                if(membres[i].roles.exists('name',"Burst Linker")) {
+                    bl += 1;
+                    if (membres[i].roles.exists('name',"Rouge")) {
+                        rouge += 1;
+                    } else if (membres[i].roles.exists('name',"Bleu")) {
+                        bleu += 1;
+                    } else if (membres[i].roles.exists('name',"Jaune")) {
+                        jaune += 1;
+                    } else if (membres[i].roles.exists('name',"Vert")) {
+                        vert += 1;
+                    } else if (membres[i].roles.exists('name',"Violet")) {
+                        violet += 1;
+                    } else if (membres[i].roles.exists('name',"Noir")) {
+                        noir += 1;
+                    } else if (membres[i].roles.exists('name',"Blanc")) {
+                        blanc += 1;
+                    } else {
+                        metal += 1;
+                    }
+                }
+            }
+            message.channel.send("Voici les informations du serveur : \n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal);
+        }
+    }
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTAzMzQ1MTA4NTc4NzI5OTg1.DwfuEw._LNwwWaw1WtGg3Rky4jfLz4EvTo");
