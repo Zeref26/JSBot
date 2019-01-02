@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const fs = require('fs');
 
 bot.on('ready', () => {
     console.log('Bot is ready !');
@@ -98,31 +97,20 @@ bot.on("message", (message) => {
             member.addRole(message.guild.roles.find('name',"Burst Linker"));
             member.addRole(message.guild.roles.find('name',"Niveau 1"));
             member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+            member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
             member.addRole(message.guild.roles.find('name',"------------------------------"));
             member.addRole(message.guild.roles.find('name',"Monde réel"));
             member.addRole(message.guild.roles.find('name',args[2]));
-            fs.writeFile(message.author.id+".txt","20", function(err) {
-                if (err) {
-                   return console.error(err);
-                }
-            });
+            message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
         }
     }
     if(message.content.startsWith("-pb")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             const args = message.content.slice(0).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            fs.exists(member.id+".txt",function(boo) {
-                if (boo==true) {
-                    fs.readFile(member.id+".txt",function(err,data) {
-                        message.channel.send("Points Burst de "+member+" : "+data.toString());
-                    });
-                } else {
-                    message.channel.send("Points Burst de "+member+" : 0");
-                }
-            });
+            let collec = message.guild.channels.find('name',"compteur-de-points").fetchMessages();
         }
     }
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTAzMzQ1MTA4NTc4NzI5OTg1.DwfuEw._LNwwWaw1WtGg3Rky4jfLz4EvTo");
