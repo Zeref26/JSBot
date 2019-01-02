@@ -34,7 +34,6 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    message.guild.members.find('id',"503345108578729985").setNickname("Moniteur");
     switch (mess) {
         case "burst link" :
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
@@ -115,6 +114,7 @@ bot.on("message", (message) => {
     if(message.content.startsWith("-info")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             var bl = 0;
+            var sf = 0;
             var rouge = 0;
             var bleu = 0;
             var jaune = 0;
@@ -144,9 +144,11 @@ bot.on("message", (message) => {
                     } else {
                         metal += 1;
                     }
+                } else {
+                    sf += 1;
                 }
             }
-            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal);
+            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n\n En attente d'une fiche : "+sf-3);
         }
     }
 });
