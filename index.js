@@ -34,12 +34,31 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
+    let member = message.guild.members.find('id',message.author.id);
     switch (mess) {
         case "burst link" :
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
                 message.delete();
             } else {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.displayName)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)==':') {
+                                    for (let j = i+2; j<l-7; j++) {
+                                        mes += m.charAt(j);
+                                    }
+                                }
+                            }
+                            let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                            msg.edit(new_m);
+                        }
+                    });
+                });
                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                 message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
@@ -72,6 +91,24 @@ bot.on("message", (message) => {
                 if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
                     message.delete();
                 } else {
+                    bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                        messages.forEach((msg)=> {
+                            let mes = "";
+                            if (msg.content.includes("```\n"+member.displayName)) {
+                                let m = ""+msg.content;
+                                let l = m.length-4;
+                                for (let i = 4; i<l; i++) {
+                                    if (m.charAt(i)==':') {
+                                        for (let j = i+2; j<l-7; j++) {
+                                            mes += m.charAt(j);
+                                        }
+                                    }
+                                }
+                                let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
+                                msg.edit(new_m);
+                            }
+                        });
+                    });
                     message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                     message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
@@ -102,9 +139,59 @@ bot.on("message", (message) => {
             member.addRole(message.guild.roles.find('name',"Monde réel"));
             member.addRole(message.guild.roles.find('name',args[2]));
             message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
+            message.guild.channels.find('name','compteur-de-points').send("");
         }
     }
-    if(message.content.startsWith("-info")){
+    if (message.content.startsWith("-pb")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            const args = message.content.slice(1).trim().split(/ +/g);
+            let member = message.mentions.members.first();
+            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                messages.forEach((msg)=> { 
+                    let pts = "";
+                    let mes = "";
+                    if (msg.content.includes("```\n"+member.displayName)) {
+                        let m = ""+msg.content;
+                        for (let i = 4; i<m.length-4; i++) {
+                            mes += m.charAt(i);
+                        }
+                        message.channel.send(mes);
+                    }
+                });
+            });
+        }
+    }
+    if (message.content.startsWith("-t")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                messages.forEach((msg)=> {
+                    let mes = "";
+                    if (msg.content.includes("```\n"+member.displayName)) {
+                        let m = ""+msg.content;
+                        let l = m.length-4;
+                        for (let i = 4; i<l; i++) {
+                            if (m.charAt(i)==':') {
+                                for (let j = i+2; j<l-7; j++) {
+                                    mes += m.charAt(j);
+                                }
+                            }
+                        }
+                        let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                        console.log(new_m);
+                        msg.edit(new_m);
+                        message.channel.send(parseInt(mes)-1);
+                    }
+                });
+            });
+        }
+    }
+    if (message.content.startsWith("-point start")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            let member = message.mentions.members.first();
+            message.guild.channels.find('id','527971056615686144').send("```\n"+member.displayName+" : 20 points\n```");
+        }
+    }
+    if (message.content.startsWith("-info")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             var bl = 0;
             var sf = 0;
@@ -153,4 +240,4 @@ bot.on("message", (message) => {
     }
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTAzMzQ1MTA4NTc4NzI5OTg1.Dw2SOQ.Qmth_yVv8m8afU3a7d9FAx-PQck");
