@@ -127,6 +127,7 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-valide")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
@@ -144,6 +145,7 @@ bot.on("message", (message) => {
     }
     if (message.content.startsWith("-pb")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
@@ -163,6 +165,7 @@ bot.on("message", (message) => {
     }
     if (message.content.startsWith("-padd")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
@@ -187,6 +190,7 @@ bot.on("message", (message) => {
     }
     if (message.content.startsWith("-prem")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
@@ -211,12 +215,14 @@ bot.on("message", (message) => {
     }
     if (message.content.startsWith("-point start")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             let member = message.mentions.members.first();
             message.guild.channels.find('id','527971056615686144').send("```\n"+member.displayName+" : 20 points\n```");
         }
     }
     if (message.content.startsWith("-info")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             var bl = 0;
             var sf = 0;
             var rouge = 0;
@@ -257,6 +263,7 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-nick")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             member.setNickname(args[2]+" "+args[3]);
