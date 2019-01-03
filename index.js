@@ -168,7 +168,7 @@ bot.on("message", (message) => {
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
                     let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('hexColor',"#725252").name)) {
+                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name) {
                         let m = ""+msg.content;
                         let l = m.length-4;
                         for (let i = 4; i<l; i++) {
@@ -178,7 +178,7 @@ bot.on("message", (message) => {
                                 }
                             }
                         }
-                        let new_m = "```\n"+member.roles.find('hexColor',"#725252").name+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
+                        let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
                         msg.edit(new_m);
                     }
                 });
@@ -192,7 +192,7 @@ bot.on("message", (message) => {
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
                     let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('hexColor',"#725252").name)) {
+                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name) {
                         let m = ""+msg.content;
                         let l = m.length-4;
                         for (let i = 4; i<l; i++) {
@@ -202,7 +202,7 @@ bot.on("message", (message) => {
                                 }
                             }
                         }
-                        let new_m = "```\n"+member.roles.find('hexColor',"#725252").name+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
+                        let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
                         msg.edit(new_m);
                     }
                 });
