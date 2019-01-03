@@ -161,8 +161,10 @@ bot.on("message", (message) => {
             });
         }
     }
-    if (message.content.startsWith("-t")){
+    if (message.content.startsWith("-padd")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            const args = message.content.slice(1).trim().split(/ +/g);
+            let member = message.mentions.members.first();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
                     let mes = "";
@@ -176,10 +178,32 @@ bot.on("message", (message) => {
                                 }
                             }
                         }
-                        let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
-                        console.log(new_m);
+                        let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
                         msg.edit(new_m);
-                        message.channel.send(parseInt(mes)-1);
+                    }
+                });
+            });
+        }
+    }
+    if (message.content.startsWith("-prem")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            const args = message.content.slice(1).trim().split(/ +/g);
+            let member = message.mentions.members.first();
+            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                messages.forEach((msg)=> {
+                    let mes = "";
+                    if (msg.content.includes("```\n"+member.displayName)) {
+                        let m = ""+msg.content;
+                        let l = m.length-4;
+                        for (let i = 4; i<l; i++) {
+                            if (m.charAt(i)==':') {
+                                for (let j = i+2; j<l-7; j++) {
+                                    mes += m.charAt(j);
+                                }
+                            }
+                        }
+                        let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
+                        msg.edit(new_m);
                     }
                 });
             });
