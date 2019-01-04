@@ -326,6 +326,9 @@ bot.on("message", (message) => {
             message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
         }
     }
+    if (message.content.startsWith("-t")) {
+        message.channel.send(message.guild.roles.find('name',"Zone neutre").color);
+    }
 });
 
 bot.login(process.env.TOKEN);
