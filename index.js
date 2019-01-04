@@ -295,6 +295,20 @@ bot.on("message", (message) => {
             message.channel.send(message.guild.members.random()+" décidera du choix.");
         }
     }
+    if(message.content.startsWith("-mp")){
+        message.delete();
+        const args = message.content.slice(1).trim().split(/ +/g);
+        let member = message.mentions.members.first();
+    }
+    if(message.content.startsWith("-f")){
+        message.delete();
+        const args = message.content.slice(1).trim().split(/ +/g);
+        let member = message.mentions.members.first();
+    }
+    if(message.content.startsWith("-spec")){
+        message.delete();
+        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
+    }
 });
 
 bot.login(process.env.TOKEN);
