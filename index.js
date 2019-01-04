@@ -129,7 +129,7 @@ bot.on("message", (message) => {
             break;
         case "help" :
             if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur. \n **-info** : affiche des infos du serveur \n **-nick <@membre> Prénom Nom** : Renomme le membre avec Prénom Nom\n **-pb <@membre> ** : Affiche le nombre de Points Bursts.\n **-prem <@membre> <nb>** : Retire <nb> Point Bursts au membre.\n **-padd <@membre> <nb>** : Ajoute <nb> Point Bursts au membre.\n **-clear <nb>** : Supprime <nb> message dans le salon où est tapé la commande.");
+                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur. \n **-info** : affiche des infos du serveur \n **-nick <@membre> Prénom Nom** : Renomme le membre avec Prénom Nom\n **-point start <@membre>** : Initialise les 20 Point Bursts du membre.\n **-pb <@membre> ** : Affiche le nombre de Points Bursts.\n **-prem <@membre> <nb>** : Retire <nb> Point Bursts au membre.\n **-padd <@membre> <nb>** : Ajoute <nb> Point Bursts au membre.\n **-clear <nb>** : Supprime <nb> message dans le salon où est tapé la commande.");
             } else {
                 message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
             }
@@ -243,6 +243,7 @@ bot.on("message", (message) => {
             var noir = 0;
             var blanc = 0;
             var metal = 0;
+            var transparent = 0;
             var membres = message.guild.members.array();
             for (var i = 0; i<membres.length; i++) {
                 if(membres[i].roles.exists('name',"Burst Linker")) {
@@ -261,6 +262,8 @@ bot.on("message", (message) => {
                         noir += 1;
                     } else if (membres[i].roles.exists('name',"Blanc")) {
                         blanc += 1;
+                    } else if (membres[i].roles.exists('name',"Transparent")) {
+                        transparent += 1;
                     } else {
                         metal += 1;
                     }
@@ -268,7 +271,7 @@ bot.on("message", (message) => {
                     sf += 1;
                 }
             }
-            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n\n En attente d'une fiche : "+(sf-3));
+            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n - Nombre d'avatars transparents : "+transparent+"\n\n En attente d'une fiche : "+(sf-3));
         }
     }
     if(message.content.startsWith("-nick")){
