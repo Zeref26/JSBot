@@ -279,6 +279,13 @@ bot.on("message", (message) => {
             member.setNickname(args[2]+" "+args[3]);
         }
     }
+    if(message.content.startsWith("-clear")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
+            const args = message.content.slice(1).trim().split(/ +/g);
+            message.channel.bulkDelete(args[1]);
+        }
+    }
 });
 
 bot.login(process.env.TOKEN);
