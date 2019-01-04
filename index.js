@@ -54,14 +54,19 @@ bot.on("message", (message) => {
                                     }
                                 }
                             }
-                            let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
-                            msg.edit(new_m);
+                            if ((parseInt(mes)-1)>0) {
+                                let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                                msg.edit(new_m);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);                
+                            } else {
+                                message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
+                                message.delete();
+                            }
                         }
                     });
                 });
-                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
-                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
             }
         } else {
             message.delete();
@@ -104,14 +109,19 @@ bot.on("message", (message) => {
                                         }
                                     }
                                 }
-                                let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
-                                msg.edit(new_m);
+                                if ((parseInt(mes)-10)>0) {
+                                    let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
+                                    msg.edit(new_m);
+                                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
+                                    message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
+                                } else {
+                                    message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
+                                    message.delete();
+                                }
                             }
                         });
                     });
-                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
-                    message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name);
                 }
             } else {
                 message.delete();
