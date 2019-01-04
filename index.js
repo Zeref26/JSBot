@@ -152,7 +152,7 @@ bot.on("message", (message) => {
                 messages.forEach((msg)=> { 
                     let pts = "";
                     let mes = "";
-                    if (msg.content.includes("```\n"+member.displayName)) {
+                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
                         let m = ""+msg.content;
                         for (let i = 4; i<m.length-4; i++) {
                             mes += m.charAt(i);
