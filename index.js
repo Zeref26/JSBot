@@ -271,7 +271,7 @@ bot.on("message", (message) => {
                     sf += 1;
                 }
             }
-            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n - Nombre d'avatars sans couleur : "+transparent+"\n\n En attente d'une fiche : "+(sf-3));
+            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n - Nombre d'avatars transparents : "+transparent+"\n\n En attente d'une fiche : "+(sf-3));
         }
     }
     if(message.content.startsWith("-nick")){
@@ -287,6 +287,12 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             message.channel.bulkDelete(args[1]);
+        }
+    }
+    if(message.content.startsWith("-choix")){
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
+            message.channel.send(message.guild.members.random()+" décidera du choix.");
         }
     }
 });
