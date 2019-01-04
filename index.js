@@ -59,7 +59,7 @@ bot.on("message", (message) => {
                                 msg.edit(new_m);
                                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
                                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',10038562).name);                
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);                
                             } else {
                                 message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
                                 message.delete();
@@ -114,7 +114,7 @@ bot.on("message", (message) => {
                                     msg.edit(new_m);
                                     message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',10038562).name);
+                                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
                                 } else {
                                     message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
                                     message.delete();
@@ -299,7 +299,7 @@ bot.on("message", (message) => {
         message.delete();
         const args = message.content.slice(4).trim().split(/ +/g);
         let member = message.mentions.members.first();
-        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',10038562).name;
+        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
         member.send("Message en provenance de "+rol2+" :\n"+m);
     }
     if(message.content.startsWith("-f")){
@@ -315,7 +315,7 @@ bot.on("message", (message) => {
             i++;
             nom += rol.charAt(i);
         }
-        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',10038562).name;
+        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
         message.guild.channels.find('name',"appartement-"+nom.toLowerCase()).send("Brain Burst : "+rol2+"vous défie dans un combat !");
     }
     if(message.content.startsWith("-spec")){
