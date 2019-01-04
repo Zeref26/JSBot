@@ -299,7 +299,7 @@ bot.on("message", (message) => {
         message.delete();
         const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
-        let m = args[1].slice(1).join(" ");
+        let m = args.slice(1).join(" ");
         let rol2 = message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name;
         member.send("Message en provenance de "+rol2+" :\n"+m);
     }
