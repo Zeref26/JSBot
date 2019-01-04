@@ -307,7 +307,11 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-spec")){
         message.delete();
-        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Spectateur"));
+        } else {
+            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
+        }
     }
 });
 
