@@ -299,11 +299,25 @@ bot.on("message", (message) => {
         message.delete();
         const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
+        let m = args.slice(1).join(" ");
+        let rol2 = message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name;
+        member.send("Message en provenance de "+rol2+" :\n"+m);
     }
     if(message.content.startsWith("-f")){
         message.delete();
         const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
+        let rol = member.roles.find('color',6524045).name;
+        let nom = "";
+        for (let i = 0; i<rol.length; i++) {
+            while (rol.charAt(i) != " ") {
+
+            }
+            i++;
+            nom += rol.charAt(i);
+        }
+        let rol2 = message.guild.members.find('id',message.author.id).roles.find('hexColor',"#725252").name;
+        message.guild.channels.find('name',"appartement-"+nom.toLowerCase()).send("Brain Burst : "+rol2+"vous défie dans un combat !");
     }
     if(message.content.startsWith("-spec")){
         message.delete();
