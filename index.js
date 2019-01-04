@@ -307,7 +307,7 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-spec")){
         message.delete();
-        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Spectateur")) {
             message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Spectateur"));
         } else {
             message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
