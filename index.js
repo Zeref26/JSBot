@@ -298,9 +298,15 @@ bot.on("message", (message) => {
         message.delete();
         const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
-        let m = args.slice(2).join(" ");
-        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
-        member.send("**__Brain Burst :__**\nMessage en provenance de "+rol2+" :\n```"+m+"```");
+        if ((message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré") && member.roles.exists('name',"Monde accéléré"))
+        || (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde réel") && member.roles.exists('name',"Monde réel"))
+        || (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre") && member.roles.exists('name',"Zone neutre"))) {
+            let m = args.slice(2).join(" ");
+            let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
+            member.send("**__Brain Burst :__**\nMessage en provenance de "+rol2+" :\n```"+m+"```");
+        } else {
+            message.author.send("Vous n'êtes pas dans le même monde.");
+        }
     }
     if(message.content.startsWith("-f")){
         message.delete();
