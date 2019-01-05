@@ -296,9 +296,9 @@ bot.on("message", (message) => {
     }
     if(message.content.startsWith("-mp")){
         message.delete();
-        const args = message.content.slice(4).trim().split(/ +/g);
+        const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
-        let m = args.slice(0).join(" ");
+        let m = args.slice(4).join(" ");
         let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
         member.send("Message en provenance de "+rol2+" :\n"+m);
     }
