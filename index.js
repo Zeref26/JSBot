@@ -380,6 +380,7 @@ bot.on("message", (message) => {
         }
     }
     if (message.content.startsWith("-report")) {
+        message.delete();
         const args = message.content.slice(1).trim().split(/ +/g);
         message.guild.channels.find('name',"plaintes-problèmes").send(message.guild.members.find('id',message.author.id)+" rapporte : "+args.slice(1).join(" "));
     }
