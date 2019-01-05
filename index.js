@@ -337,9 +337,6 @@ bot.on("message", (message) => {
             }
         }
     }
-    if (message.content.startsWith("-t")) {
-        message.channel.send(message.guild.roles.find('name',"Neo Magnet").color);
-    }
 });
 
 bot.login(process.env.TOKEN);
