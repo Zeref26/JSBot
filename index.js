@@ -308,21 +308,21 @@ bot.on("message", (message) => {
             message.author.send("Vous n'êtes pas dans le même monde.");
         }
     }
-    if(message.content.startsWith("-f")){
+    if (message.content.startsWith("-f")) {
         message.delete();
-        const args = message.content.slice(1).trim().split(/ +/g);
         let member = message.mentions.members.first();
-        let rol = member.roles.find('color',6524045).name;
-        let nom = "";
-        for (let i = 0; i<rol.length; i++) {
-            while (rol.charAt(i) != " ") {
-
+        let mem = "";
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde réel") && member.roles.exists('name',"Monde réel")) {
+            let rol = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
+            for (let i = 0; i<member.displayName.length; i++) {
+                if (member.displayName.charAt(i) == " ") {
+                    for (let j=i+1; j<member.displayName.length; j++) {
+                        mem += member.displayName.charAt(j);
+                    }
+                    message.guild.channels.find('name',"appartement-"+mem.toLowerCase()).send("**__Brain Burst__**\n"+rol+" vous défie !");
+                }
             }
-            i++;
-            nom += rol.charAt(i);
         }
-        let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
-        message.guild.channels.find('name',"appartement-"+nom.toLowerCase()).send("Brain Burst : "+rol2+"vous défie dans un combat !");
     }
     if(message.content.startsWith("-spec")){
         message.delete();
