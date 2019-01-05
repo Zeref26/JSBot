@@ -321,6 +321,7 @@ bot.on("message", (message) => {
                     }
                     let enn = member.roles.find('color',7492178).name;
                     message.guild.channels.find('name',"appartement-"+mem.toLowerCase()).send("**__Brain Burst__**\n"+enn+" est défié(e) par "+rol+" !");
+                    member.send("**__Brain Burst__**\nVous avez été défiez par "+rol);
                 }
             }
         }
