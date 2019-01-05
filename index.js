@@ -300,7 +300,7 @@ bot.on("message", (message) => {
         let member = message.mentions.members.first();
         let m = args.slice(2).join(" ");
         let rol2 = message.guild.members.find('id',message.author.id).roles.find('color',7492178).name;
-        member.send("Message en provenance de "+rol2+" :\n"+m);
+        member.send("**__Brain Burst :__**\nMessage en provenance de "+rol2+" :\n```"+m+"```");
     }
     if(message.content.startsWith("-f")){
         message.delete();
