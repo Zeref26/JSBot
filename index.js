@@ -384,6 +384,11 @@ bot.on("message", (message) => {
         const args = message.content.slice(1).trim().split(/ +/g);
         message.guild.channels.find('name',"plaintes-problèmes").send(message.guild.members.find('id',message.author.id)+" rapporte : "+args.slice(1).join(" "));
     }
+    if (message.content.startsWith("-say")) {
+        message.delete();
+        const args = message.content.slice(1).trim().split(/ +/g);
+        message.channel.send(args.slice(1).join(" "));
+    }
 });
 
 bot.login(process.env.TOKEN);
