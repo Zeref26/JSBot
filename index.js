@@ -328,11 +328,7 @@ bot.on("message", (message) => {
     if(message.content.startsWith("-spec")){
         message.delete();
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Spectateur")) {
-                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Spectateur"));
-            } else {
-                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur"));
-            }
+            
         } else {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Spectateur HRP")) {
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Spectateur HRP"));
