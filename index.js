@@ -34,7 +34,10 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    message.guild.channels.find('name',"historique").send(message.channel.name+" "+message.author.username+" : "+message);
+    if (message.author.id == message.guild.members.find('displayName',"Moniteur")) {
+    } else {
+        message.guild.channels.find('name',"historique").send(message.channel.name+" "+message.author.username+" : "+message);
+    }
     switch (mess) {
         case "burst link" :
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
