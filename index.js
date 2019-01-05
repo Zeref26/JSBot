@@ -34,7 +34,7 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    if (message.author.id == message.guild.members.find('displayName',"Moniteur")) {
+    if (message.author.displayName == "Moniteur") {
     } else {
         message.guild.channels.find('name',"historique").send(message.channel.name+" "+message.author.username+" : "+message);
     }
