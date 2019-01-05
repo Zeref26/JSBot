@@ -34,7 +34,6 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    let member = message.guild.members.find('id',message.author.id);
     switch (mess) {
         case "burst link" :
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
@@ -44,7 +43,7 @@ bot.on("message", (message) => {
                 bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg)=> {
                         let mes = "";
-                        if (msg.content.includes("```\n"+member.displayName)) {
+                        if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).displayName)) {
                             let m = ""+msg.content;
                             let l = m.length-4;
                             for (let i = 4; i<l; i++) {
@@ -55,7 +54,7 @@ bot.on("message", (message) => {
                                 }
                             }
                             if ((parseInt(mes)-1)>0) {
-                                let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                                let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
                                 msg.edit(new_m);
                                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
                                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
@@ -99,7 +98,7 @@ bot.on("message", (message) => {
                     bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                         messages.forEach((msg)=> {
                             let mes = "";
-                            if (msg.content.includes("```\n"+member.displayName)) {
+                            if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).displayName)) {
                                 let m = ""+msg.content;
                                 let l = m.length-4;
                                 for (let i = 4; i<l; i++) {
@@ -110,7 +109,7 @@ bot.on("message", (message) => {
                                     }
                                 }
                                 if ((parseInt(mes)-10)>0) {
-                                    let new_m = "```\n"+member.displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
+                                    let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
                                     msg.edit(new_m);
                                     message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                                     message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
