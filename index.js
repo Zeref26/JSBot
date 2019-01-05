@@ -9,7 +9,7 @@ bot.on('ready', () => {
         let date = new Date();
         let m = date.getMinutes()
         let s = date.getSeconds();
-        if (m == 0 && s == 0) {
+        if (m == 4 && s == 0) {
             let zone_n = Math.floor((Math.random() * 5) + 1);
             switch (zone_n) {
                 case 1 :
@@ -27,20 +27,105 @@ bot.on('ready', () => {
                 case 5 :
                     bot.channels.find('name',"centre-de-la-zone").send("**[Une mutation de zone ! \n L'endroit se vide complètement et devient une simple plaine sans aucun arbre, juste de l'herbe à perte de vue, cependant la gravité ici est extrêmement élevée, les mouvements sont difficiles et les avatars lents perdent 50 Pv par minutes]**")
                     break;
+            }
+            bot.guilds.find('name',"[AW]- New Generation").members.forEach(member => {
+                if (member.roles.exists('name',"Burst Linker") && !member.roles.exists('color',11342935)) {
+                    bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"plaintes-problèmes").send(bot.guilds.find('name',"[AW]- New Generation").roles.find('name',"Admin")+"\n"+member+" n'a pas de rôle de monde.");
                 }
+            });
         }
     }, 1 * 1000);
 });
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    if (!(message.author.id == "503345108578729985" || message.channel.name == "historique")) {
-        message.guild.channels.find('name',"historique").send(message.channel+" "+message.author.username+" : "+message);
+    if (!(message.author.id == "295196682268835851" || message.channel.name == "historique")) {
+        message.guild.channels.find('name',"historique").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
     }
-    switch (mess) {
-        case "burst link" :
+    if (mess == "burst link") {
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
+                message.delete();
+            } else {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> {
+                        if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).displayName)) {
+                            let mes = "";
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)==':') {
+                                    for (let j = i+2; j<l-7; j++) {
+                                        mes += m.charAt(j);
+                                    }
+                                }
+                            }
+                            if ((parseInt(mes)-1)>0) {
+                                let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                                msg.edit(new_m);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                            } else {
+                                message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
+                                message.delete();
+                            }
+                            
+                        }
+                    });
+                });
+            }
+        } else {
+            message.delete();
+        }
+    }
+    if (mess == "burst out") {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+            } else  if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre") && message.channel.name == "point-de-sortie") {
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+            } else {
+                message.delete();
+            }
+        } else {
+            message.delete();
+        }
+    }
+    if (mess == "unlimited burst link") {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
                 message.delete();
             } else {
                 bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
@@ -56,12 +141,21 @@ bot.on("message", (message) => {
                                     }
                                 }
                             }
-                            if ((parseInt(mes)-1)>0) {
-                                let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-1).toString()+" points\n```";
+                            if ((parseInt(mes)-10)>0) {
+                                let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
                                 msg.edit(new_m);
-                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);                
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
+                                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
+                                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
                             } else {
                                 message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
                                 message.delete();
@@ -73,69 +167,13 @@ bot.on("message", (message) => {
         } else {
             message.delete();
         }
-        break;
-        case "burst out" :
-            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-                if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
-                    if (message.channel.name == "point-de-sortie") {
-                        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
-                        message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Zone neutre"));
-                        message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
-                    } else {
-                        message.delete();
-                    }
-                } else {
-                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
-                    message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde accéléré"));
-                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
-                }
-            } else {
-                message.delete();
-            }
-            break;
-        case "unlimited burst link" :
-            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-                if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
-                    message.delete();
-                } else {
-                    bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                        messages.forEach((msg)=> {
-                            let mes = "";
-                            if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).displayName)) {
-                                let m = ""+msg.content;
-                                let l = m.length-4;
-                                for (let i = 4; i<l; i++) {
-                                    if (m.charAt(i)==':') {
-                                        for (let j = i+2; j<l-7; j++) {
-                                            mes += m.charAt(j);
-                                        }
-                                    }
-                                }
-                                if ((parseInt(mes)-10)>0) {
-                                    let new_m = "```\n"+message.guild.members.find('id',message.author.id).displayName+" : "+(parseInt(mes)-10).toString()+" points\n```";
-                                    msg.edit(new_m);
-                                    message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
-                                    message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-                                    message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
-                                } else {
-                                    message.author.send("Vous n'avez pas assez de Points Bursts.\n\nVos Points : "+mes);
-                                    message.delete();
-                                }
-                            }
-                        });
-                    });
-                }
-            } else {
-                message.delete();
-            }
-            break;
-        case "help" :
-            if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur. \n **-info** : affiche des infos du serveur \n **-nick <@membre> Prénom Nom** : Renomme le membre avec Prénom Nom\n **-point start <@membre>** : Initialise les 20 Point Bursts du membre.\n **-pb <@membre> ** : Affiche le nombre de Points Bursts.\n **-prem <@membre> <nb>** : Retire <nb> Point Bursts au membre.\n **-padd <@membre> <nb>** : Ajoute <nb> Point Bursts au membre.\n **-clear <nb>** : Supprime <nb> message dans le salon où est tapé la commande.");
-            } else {
-                message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
-            }
-            break;
+    }
+    if (mess == "help") {
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur. \n **-info** : affiche des infos du serveur \n **-nick <@membre> Prénom Nom** : Renomme le membre avec Prénom Nom\n **-point start <@membre>** : Initialise les 20 Point Bursts du membre.\n **-pb <@membre> ** : Affiche le nombre de Points Bursts.\n **-prem <@membre> <nb>** : Retire <nb> Point Bursts au membre.\n **-padd <@membre> <nb>** : Ajoute <nb> Point Bursts au membre.\n **-clear <nb>** : Supprime <nb> message dans le salon où est tapé la commande.");
+        } else {
+            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
+        }
     }
     if(message.content.startsWith("-valide")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
@@ -340,6 +378,10 @@ bot.on("message", (message) => {
                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur HRP"));
             }
         }
+    }
+    if (message.content.startsWith("-report")) {
+        const args = message.content.slice(1).trim().split(/ +/g);
+        message.guild.channels.find('name',"plaintes-problèmes").send(message.guild.members.find('id',message.author.id)+" rapporte : "+args.slice(1).join(" "));
     }
 });
 
