@@ -319,7 +319,8 @@ bot.on("message", (message) => {
                     for (let j=i+1; j<member.displayName.length; j++) {
                         mem += member.displayName.charAt(j);
                     }
-                    message.guild.channels.find('name',"appartement-"+mem.toLowerCase()).send("**__Brain Burst__**\n"+rol+" vous défie !");
+                    let enn = member.roles.find('color',7492178).name;
+                    message.guild.channels.find('name',"appartement-"+mem.toLowerCase()).send("**__Brain Burst__**\n"+enn+" est défié(e) par "+rol+" !");
                 }
             }
         }
