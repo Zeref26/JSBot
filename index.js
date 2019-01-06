@@ -9,7 +9,7 @@ bot.on('ready', () => {
         let date = new Date();
         let m = date.getMinutes()
         let s = date.getSeconds();
-        if (m == 4 && s == 0) {
+        if (m == 0 && s == 0) {
             let zone_n = Math.floor((Math.random() * 5) + 1);
             switch (zone_n) {
                 case 1 :
