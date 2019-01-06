@@ -37,6 +37,14 @@ bot.on('ready', () => {
     }, 1 * 1000);
 });
 
+bot.on("guildMemberAdd", member => {
+    bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"général").send("Bienvenue à "+member+" dans le Brain Burst.");
+});
+
+bot.on("guildMemberRemove", member => {
+    bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"général").send(member+" a perdu tous ses Points Burst. Adieu "+member);
+});
+
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
     if (!(message.author.id == "295196682268835851" || message.channel.name == "historique")) {
