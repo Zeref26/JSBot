@@ -409,7 +409,6 @@ bot.on("message", (message) => {
         }
     }
     if (message.content.startsWith("-win")) {
-        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
@@ -429,10 +428,8 @@ bot.on("message", (message) => {
                     }
                 });
             });
-        }
     }
     if (message.content.startsWith("-lose")) {
-        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
@@ -452,10 +449,8 @@ bot.on("message", (message) => {
                     }
                 });
             });
-        }
     }
     if (message.content.startsWith("-eq")) {
-        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                 messages.forEach((msg)=> {
@@ -476,7 +471,6 @@ bot.on("message", (message) => {
                 });
             });
         }
-    }
 });
 
 bot.login(process.env.TOKEN);
