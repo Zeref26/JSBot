@@ -400,10 +400,13 @@ bot.on("message", (message) => {
         }
     }
     if (message.content.startsWith("-stat start")) {
-        let mem = message.mentions.members.first();
-        message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Victoires\n```");
-        message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Défaites\n```");
-        message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Egalités\n```");
+        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
+            message.delete();
+            let mem = message.mentions.members.first();
+            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Victoires\n```");
+            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Défaites\n```");
+            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Egalités\n```");
+        }
     }
     if (message.content.startsWith("-win")) {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
