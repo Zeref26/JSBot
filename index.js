@@ -193,17 +193,36 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
-            member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
-            member.addRole(message.guild.roles.find('name',"Burst Linker"));
-            member.addRole(message.guild.roles.find('name',"Niveau 1"));
-            member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
-            member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
-            member.addRole(message.guild.roles.find('name',"------------------------------"));
-            member.addRole(message.guild.roles.find('name',"Monde réel"));
-            member.addRole(message.guild.roles.find('name',args[2]));
-            message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
-            message.guild.channels.find('name','compteur-de-points').send("");
+            if (member.roles.exists('color',6524045)) {
+                member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
+                member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
+                member.addRole(message.guild.roles.find('name',"Burst Linker"));
+                member.addRole(message.guild.roles.find('name',"Niveau 1"));
+                member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+                member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
+                member.addRole(message.guild.roles.find('name',"------------------------------"));
+                member.addRole(message.guild.roles.find('name',"Monde réel"));
+                member.addRole(message.guild.roles.find('name',args[2]));
+                let mem = "";
+                for (let i = 0; i<member.displayName.length; i++) {
+                    if (member.displayName.charAt(i) == " ") {
+                        for (let j=i+1; j<member.displayName.length; j++) {
+                            mem += member.displayName.charAt(j);
+                        }
+                        message.guild.createChannel("appartement-"+mem.toLowerCase(),'text').then(
+                            chan => {
+                                let par = message.guild.channels.find('name',"R- Ville");
+                                chan.setParent(par);
+                            }
+                        );
+                    }
+                }
+                message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
+                message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
+                message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
+            } else {
+                message.channel.send("Vous avez oublié de mettre le rôle Prénom Nom.");
+            }
         }
     }
     if (message.content.startsWith("-pb")){
