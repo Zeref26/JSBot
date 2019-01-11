@@ -312,6 +312,7 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
+            const args = message.content.slice(1).trim().split(/ +/g);
             if (args.length==3)  {
                 message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
             } else {
