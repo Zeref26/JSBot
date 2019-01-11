@@ -193,36 +193,46 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            if (member.roles.exists('color',6524045)) {
-                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
-                member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
-                member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
-                member.addRole(message.guild.roles.find('name',"Burst Linker"));
-                member.addRole(message.guild.roles.find('name',"Niveau 1"));
-                member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
-                member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
-                member.addRole(message.guild.roles.find('name',"------------------------------"));
-                member.addRole(message.guild.roles.find('name',"Monde réel"));
-                member.addRole(message.guild.roles.find('name',args[2]));
-                let mem = "";
-                for (let i = 0; i<member.displayName.length; i++) {
-                    if (member.displayName.charAt(i) == " ") {
-                        for (let j=i+1; j<member.displayName.length; j++) {
-                            mem += member.displayName.charAt(j);
-                        }
-                        message.guild.createChannel("appartement-"+mem.toLowerCase(),'text').then(
-                            chan => {
-                                let par = message.guild.channels.find('name',"R- Ville");
-                                chan.setParent(par);
+            if (args.length==2) {
+                if (member.roles.exists('color',6524045)) {
+                    if (message.guild.roles.exists('name',args[2])) {
+                        message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                        member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
+                        member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
+                        member.addRole(message.guild.roles.find('name',"Burst Linker"));
+                        member.addRole(message.guild.roles.find('name',"Niveau 1"));
+                        member.addRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+                        member.addRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
+                        member.addRole(message.guild.roles.find('name',"------------------------------"));
+                        member.addRole(message.guild.roles.find('name',"Monde réel"));
+                        member.addRole(message.guild.roles.find('name',args[2]));
+                        let mem = "";
+                        for (let i = 0; i<member.displayName.length; i++) {
+                            if (member.displayName.charAt(i) == " ") {
+                                for (let j=i+1; j<member.displayName.length; j++) {
+                                    mem += member.displayName.charAt(j);
+                                }
+                                message.guild.createChannel("appartement-"+mem.toLowerCase(),'text').then(
+                                    chan => {
+                                        let par = message.guild.channels.find('name',"R- Ville");
+                                        chan.setParent(par);
+                                    }
+                                );
                             }
-                        );
+                        }
+                        message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
+                        message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
+                        message.guild.channels.find("name","ratio").send("```\n"+member.roles.find('color',6524045).name+"\n0-0-0\n```");
+                    } else {
+                        message.channel.send("Couleur inexistante. Vérifiez la majuscule.");
                     }
+                } else {
+                    message.channel.send("Vous avez oublié de mettre le rôle Prénom Nom.");
                 }
-                message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
-                message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
-                message.guild.channels.find("name","ratio").send("```\n"+member.roles.find('color',6524045).name+"\n0-0-0\n```");
+            } else if (args.length==1){
+                message.channel.send("Il faut dire une couleur.");
             } else {
-                message.channel.send("Vous avez oublié de mettre le rôle Prénom Nom.");
+                message.channel.send("Il faut mentionner une personne et dire une couleur.\nExemple : -valide "+message.guild.members.find('id',message.author.id)+" Rouge")
             }
         }
     }
@@ -231,19 +241,23 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> { 
-                    let pts = "";
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        for (let i = 4; i<m.length-4; i++) {
-                            mes += m.charAt(i);
+            if (args.length==2) {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> { 
+                        let pts = "";
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            for (let i = 4; i<m.length-4; i++) {
+                                mes += m.charAt(i);
+                            }
+                            message.channel.send(mes);
                         }
-                        message.channel.send(mes);
-                    }
+                    });
                 });
-            });
+            } else {
+                message.channel.send("Aucune personne mentionnée.");
+            }
         }
     }
     if (message.content.startsWith("-padd")){
@@ -251,30 +265,36 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)==':') {
-                                for (let j = i+2; j<l-7; j++) {
-                                    mes += m.charAt(j);
+            if (args.length==3) {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)==':') {
+                                    for (let j = i+2; j<l-7; j++) {
+                                        mes += m.charAt(j);
+                                    }
                                 }
                             }
+                            let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
+                            msg.edit(new_m);
+                            if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>5) {
+                                message.guild.channels.find('id',"531211899803533335").send("Attention, "+member+" a moins de 10 Points Burst.");
+                            } else if (parseInt(mes)+parseInt(args[2])<=5) {
+                                let admin = message.guild.roles.find('name','Admin');
+                                message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                            }
                         }
-                        let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
-                        msg.edit(new_m);
-                        if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>5) {
-                            message.guild.channels.find('id',"531211899803533335").send("Attention, "+member+" a moins de 10 Points Burst.");
-                        } else if (parseInt(mes)+parseInt(args[2])<=5) {
-                            let admin = message.guild.roles.find('name','Admin');
-                            message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
-                        }
-                    }
+                    });
                 });
-            });
+            } else if (args.length==2) {
+                message.channel.send("Il faut rentrer une quantité.");
+            } else {
+                message.channel.send("Il faut mentionnée une personne et entrer une quantité.\nExemple : -padd "+message.guild.members.find('id',message.author.id)+" 5");
+            }
         }
     }
     if (message.content.startsWith("-prem")){
@@ -282,30 +302,37 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)==':') {
-                                for (let j = i+2; j<l-7; j++) {
-                                    mes += m.charAt(j);
+            if (args.length==3) {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)==':') {
+                                    for (let j = i+2; j<l-7; j++) {
+                                        mes += m.charAt(j);
+                                    }
                                 }
                             }
+                            let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
+                            msg.edit(new_m);
+                            if (parseInt(mes)-parseInt(args[2])<=10 && parseInt(mes)-parseInt(args[2])>5) {
+                                message.guild.channels.find('id',"531211899803533335").send("Attention, "+member+" a moins de 10 Points Burst.");
+                            } else if (parseInt(mes)-parseInt(args[2])<=5) {
+                                let admin = message.guild.roles.find('name','Admin');
+                                message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                            }
                         }
-                        let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
-                        msg.edit(new_m);
-                        if (parseInt(mes)-parseInt(args[2])<=10 && parseInt(mes)-parseInt(args[2])>5) {
-                            message.guild.channels.find('id',"531211899803533335").send("Attention, "+member+" a moins de 10 Points Burst.");
-                        } else if (parseInt(mes)-parseInt(args[2])<=5) {
-                            let admin = message.guild.roles.find('name','Admin');
-                            message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
-                        }
-                    }
+                    });
                 });
-            });
+            } else if (args.length==2) {
+                message.channel.send("Il faut rentrer une quantité.");
+            } else {
+                message.channel.send("Il faut mentionnée une personne et entrer une quantité.\nExemple : -prem "+message.guild.members.find('id',message.author.id)+" 5");
+            }
+            
         }
     }
     if (message.content.startsWith("-point start")){
