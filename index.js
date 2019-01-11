@@ -433,6 +433,7 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
+            message.channel.send(args.length+" ");
             message.channel.send(args.slice(1).join(" "));
         }
     }
@@ -440,115 +441,131 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let mem = message.mentions.members.first();
-            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
+            if (message.guild.members.exists('id',member.id))  {
+                message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
+            } else {
+                message.channel.send("Cette personne n'est pas sur le serveur.");
+            }
         }
     }
     if (message.content.startsWith("-win")) {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg) => {
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        let v = "";
-                        let e = "";
-                        let d = "";
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)=='\n') {
-                                let j = 0;
-                                for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
-                                    v += m.charAt(j);
+            if (message.guild.members.exists('id',member.id)) {
+                message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg) => {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            let v = "";
+                            let e = "";
+                            let d = "";
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)=='\n') {
+                                    let j = 0;
+                                    for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                        v += m.charAt(j);
+                                    }
+                                    let k = 0;
+                                    for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                        e += m.charAt(k);
+                                    }
+                                    for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                        d += m.charAt(n);
+                                    }
+                                    
                                 }
-                                let k = 0;
-                                for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
-                                    e += m.charAt(k);
-                                }
-                                for (let n = k+1; m.charAt(n)!='\n'; n++) {
-                                    d += m.charAt(n);
-                                }
-                                
                             }
+                            let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+(parseInt(v)+1)+"-"+e+"-"+d+"\n```";
+                            msg.edit(new_m);
                         }
-                        let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+(parseInt(v)+1)+"-"+e+"-"+d+"\n```";
-                        msg.edit(new_m);
-                    }
+                    });
                 });
-            });
+            } else {
+                message.channel.send("Cette personne n'est pas sur le serveur.");
+            }
         }
     }
     if (message.content.startsWith("-lose")) {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg) => {
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        let v = "";
-                        let e = "";
-                        let d = "";
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)=='\n') {
-                                let j = 0;
-                                for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
-                                    v += m.charAt(j);
+            if (message.guild.members.exists('id',member.id)) {
+                message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg) => {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            let v = "";
+                            let e = "";
+                            let d = "";
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)=='\n') {
+                                    let j = 0;
+                                    for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                        v += m.charAt(j);
+                                    }
+                                    let k = 0;
+                                    for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                        e += m.charAt(k);
+                                    }
+                                    for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                        d += m.charAt(n);
+                                    }
+                                    
                                 }
-                                let k = 0;
-                                for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
-                                    e += m.charAt(k);
-                                }
-                                for (let n = k+1; m.charAt(n)!='\n'; n++) {
-                                    d += m.charAt(n);
-                                }
-                                
                             }
+                            let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
+                            msg.edit(new_m);
                         }
-                        let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
-                        msg.edit(new_m);
-                    }
+                    });
                 });
-            });
+            } else {
+                message.channel.send("Cette personne n'est pas sur le serveur.");
+            }
         }
     }
     if (message.content.startsWith("-equal")) {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg) => {
-                    let mes = "";
-                    if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        let v = "";
-                        let e = "";
-                        let d = "";
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)=='\n') {
-                                let j = 0;
-                                for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
-                                    v += m.charAt(j);
+            if (message.guild.members.exists('id',member.id)) {
+                message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg) => {
+                        let mes = "";
+                        if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                            let m = ""+msg.content;
+                            let l = m.length-4;
+                            let v = "";
+                            let e = "";
+                            let d = "";
+                            for (let i = 4; i<l; i++) {
+                                if (m.charAt(i)=='\n') {
+                                    let j = 0;
+                                    for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                        v += m.charAt(j);
+                                    }
+                                    let k = 0;
+                                    for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                        e += m.charAt(k);
+                                    }
+                                    for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                        d += m.charAt(n);
+                                    }
+                                    
                                 }
-                                let k = 0;
-                                for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
-                                    e += m.charAt(k);
-                                }
-                                for (let n = k+1; m.charAt(n)!='\n'; n++) {
-                                    d += m.charAt(n);
-                                }
-                                
                             }
+                            let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+(parseInt(e)+1)+"-"+d+"\n```";
+                            msg.edit(new_m);
                         }
-                        let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+(parseInt(e)+1)+"-"+d+"\n```";
-                        msg.edit(new_m);
-                    }
+                    });
                 });
-            });
+            } else {
+                message.channel.send("Cette personne n'est pas sur le serveur.");
+            }
         }
     }
 });
