@@ -396,11 +396,11 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            if (args.length>=3) {
+            if (args.length>=4) {
                 member.setNickname(args[2]+" "+args[3]);
-            } else if (args.length==2) {
+            } else if (args.length==3) {
                 message.channel.send("Vous n'avez pas mis le nom.");
-            } else if (args.length==1) {
+            } else if (args.length==2) {
                 message.channel.send("Vous n'avez pas mis le prénom et le nom.");
             } else {
                 message.channel.send("Il faut mentionnée une personne et entrer Prénom Nom.\nExemple : -nick "+message.guild.members.find('id',message.author.id)+" Jean-Luc Patrikac"); 
