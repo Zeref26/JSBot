@@ -55,6 +55,7 @@ bot.on("message", (message) => {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
                 message.delete();
             } else {
+                let member = message.guild.members.find('id',message.author.id);
                 bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg)=> {
                         if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name)) {
