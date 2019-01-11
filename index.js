@@ -142,6 +142,7 @@ bot.on("message", (message) => {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
                 message.delete();
             } else {
+                let member = message.guild.members.find('id',message.author.id);
                 bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg)=> {
                         let mes = "";
