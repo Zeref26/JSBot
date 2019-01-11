@@ -176,13 +176,6 @@ bot.on("message", (message) => {
             message.delete();
         }
     }
-    if (mess == "help") {
-        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie. \n\n **-valide <@membre> <Couleur>** : Valide la fiche d'un membre et lui attribue les rôles de base ainsi que sa couleur. \n **-info** : affiche des infos du serveur \n **-nick <@membre> Prénom Nom** : Renomme le membre avec Prénom Nom\n **-point start <@membre>** : Initialise les 20 Point Bursts du membre.\n **-pb <@membre> ** : Affiche le nombre de Points Bursts.\n **-prem <@membre> <nb>** : Retire <nb> Point Bursts au membre.\n **-padd <@membre> <nb>** : Ajoute <nb> Point Bursts au membre.\n **-clear <nb>** : Supprime <nb> message dans le salon où est tapé la commande.");
-        } else {
-            message.author.send("Les commandes n'ont pas de préfixe et doivent être utilisées dans les salons RP. \n\n **Burst Link** : Active le Brain Burst et emmène dans le monde accéléré. \n **Burst Out** : Permet de sortir du monde accéléré. \n **Unlimited Burst Link** : Envoie dans la zone neutre. On ne peut utiliser le Burst Out qu'au point de sortie.")
-        }
-    }
     if(message.content.startsWith("-valide")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
