@@ -312,7 +312,11 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
+            if (message.guild.members.exists('id',member.id))  {
+                message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
+            } else {
+                message.channel.send("Cette personne n'est pas sur le serveur.");
+            }
         }
     }
     if (message.content.startsWith("-info")){
@@ -364,20 +368,26 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            member.setNickname(args[2]+" "+args[3]);
+            if (message.guild.members.exists('id',member.id)) {
+                if (args.length>=3) {
+                    member.setNickname(args[2]+" "+args[3]);
+                } else if (args.length==2) {
+                    message.channel.send("Vous n'avez pas mis le nom.");
+                } else {
+                    message.channel.send("Vous n'avez pas mis le prénom et le nom.");
+                }
+            }
         }
     }
     if(message.content.startsWith("-clear")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
-            message.channel.bulkDelete(args[1]);
-        }
-    }
-    if(message.content.startsWith("-choix")){
-        if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
-            message.delete();
-            message.channel.send(message.guild.members.random()+" décidera du choix.");
+            if (args.length>=2) {
+                message.channel.bulkDelete(args[1]+1);
+            } else if (args.length<2) {
+                message.author.send("Vous n'avez pas entré le nombre de message à effacer.");
+            }
         }
     }
     if(message.content.startsWith("-mp")){
@@ -410,17 +420,21 @@ bot.on("message", (message) => {
                     member.send("**__Brain Burst__**\nVous avez été défiez par "+rol);
                 }
             }
+        } else {
+            message.author.send("L'un de vous est déjà occupé.")
         }
     }
     if(message.content.startsWith("-spec")){
         message.delete();
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
-            
+            message.author.send("Vous n'avez pas accès à cette commande.");
         } else {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Spectateur HRP")) {
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Spectateur HRP"));
+                message.author.send("Vous n'êtes plus spectateur.");
             } else {
                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Spectateur HRP"));
+                message.author.send("Vous êtes passé spectateur.");
             }
         }
     }
