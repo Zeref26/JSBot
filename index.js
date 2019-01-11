@@ -193,7 +193,7 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            if (args.length==2) {
+            if (args.length==3) {
                 if (member.roles.exists('color',6524045)) {
                     if (message.guild.roles.exists('name',args[2])) {
                         message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
@@ -229,7 +229,7 @@ bot.on("message", (message) => {
                 } else {
                     message.channel.send("Vous avez oublié de mettre le rôle Prénom Nom.");
                 }
-            } else if (args.length==1){
+            } else if (args.length==2){
                 message.channel.send("Il faut dire une couleur.");
             } else {
                 message.channel.send("Il faut mentionner une personne et dire une couleur.\nExemple : -valide "+message.guild.members.find('id',message.author.id)+" Rouge")
