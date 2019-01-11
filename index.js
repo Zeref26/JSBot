@@ -47,7 +47,7 @@ bot.on("guildMemberRemove", member => {
 
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
-    if (!(message.author.id == "295196682268835851" || message.channel.name == "historique")) {
+    if (!(message.author.id == "503345108578729985" || message.channel.name == "historique")) {
         message.guild.channels.find('name',"historique").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
     }
     if (mess == "burst link") {
