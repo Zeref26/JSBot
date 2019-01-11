@@ -275,7 +275,7 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            message.guild.channels.find('id','527971056615686144').send("```\n"+member.displayName+" : 20 points\n```");
+            message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
         }
     }
     if (message.content.startsWith("-info")){
@@ -403,74 +403,111 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let mem = message.mentions.members.first();
-            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Victoires\n```");
-            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Défaites\n```");
-            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+" : 0 Egalités\n```");
+            message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
         }
     }
     if (message.content.startsWith("-win")) {
-            message.delete();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name) && msg.content.includes("Victoires")) {
-                        let mes = "";
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)==':') {
-                                for (let j = i+2; j<l-10; j++) {
-                                    mes += m.charAt(j);
-                                }
+        message.delete();
+        let member = message.mentions.members.first();
+        message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+            messages.forEach((msg) => {
+                let mes = "";
+                if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                    let m = ""+msg.content;
+                    let l = m.length-4;
+                    let v = "";
+                    let e = "";
+                    let d = "";
+                    for (let i = 4; i<l; i++) {
+                        if (m.charAt(i)=='\n') {
+                            let j = 0;
+                            for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                v += m.charAt(j);
                             }
+                            let k = 0;
+                            for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                e += m.charAt(k);
+                            }
+                            for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                d += m.charAt(n);
+                            }
+                            
                         }
-                        let new_m = "```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name+" : "+(parseInt(mes)+1).toString()+" Victoires\n```";
-                        msg.edit(new_m);
                     }
-                });
+                    let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+(parseInt(v)+1)+"-"+e+"-"+d+"\n```";
+                    msg.edit(new_m);
+                }
             });
+        });
     }
     if (message.content.startsWith("-lose")) {
-            message.delete();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name) && msg.content.includes("Défaites")) {
-                        let mes = "";
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)==':') {
-                                for (let j = i+2; j<l-9; j++) {
-                                    mes += m.charAt(j);
-                                }
+        message.delete();
+        let member = message.mentions.members.first();
+        message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+            messages.forEach((msg) => {
+                let mes = "";
+                if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                    let m = ""+msg.content;
+                    let l = m.length-4;
+                    let v = "";
+                    let e = "";
+                    let d = "";
+                    for (let i = 4; i<l; i++) {
+                        if (m.charAt(i)=='\n') {
+                            let j = 0;
+                            for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                v += m.charAt(j);
                             }
+                            let k = 0;
+                            for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                e += m.charAt(k);
+                            }
+                            for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                d += m.charAt(n);
+                            }
+                            
                         }
-                        let new_m = "```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name+" : "+(parseInt(mes)+1).toString()+" Défaites\n```";
-                        msg.edit(new_m);
                     }
-                });
+                    let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
+                    msg.edit(new_m);
+                }
             });
+        });
     }
-    if (message.content.startsWith("-eq")) {
-            message.delete();
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    if (msg.content.includes("```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name) && msg.content.includes("Egalités")) {
-                        let mes = "";
-                        let m = ""+msg.content;
-                        let l = m.length-4;
-                        for (let i = 4; i<l; i++) {
-                            if (m.charAt(i)==':') {
-                                for (let j = i+2; j<l-9; j++) {
-                                    mes += m.charAt(j);
-                                }
+    if (message.content.startsWith("-equal")) {
+        message.delete();
+        let member = message.mentions.members.first();
+        message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
+            messages.forEach((msg) => {
+                let mes = "";
+                if (msg.content.includes("```\n"+member.roles.find('color',6524045).name)) {
+                    let m = ""+msg.content;
+                    let l = m.length-4;
+                    let v = "";
+                    let e = "";
+                    let d = "";
+                    for (let i = 4; i<l; i++) {
+                        if (m.charAt(i)=='\n') {
+                            let j = 0;
+                            for (j = i+1; m.charAt(j)!="-" && j<l; j++) {
+                                v += m.charAt(j);
                             }
+                            let k = 0;
+                            for (k = j+1; m.charAt(k)!="-" && k<l; k++) {
+                                e += m.charAt(k);
+                            }
+                            for (let n = k+1; m.charAt(n)!='\n'; n++) {
+                                d += m.charAt(n);
+                            }
+                            
                         }
-                        let new_m = "```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name+" : "+(parseInt(mes)+1).toString()+" Egalités\n```";
-                        msg.edit(new_m);
                     }
-                });
+                    let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+(parseInt(e)+1)+"-"+d+"\n```";
+                    msg.edit(new_m);
+                }
             });
-        }
+        });
+    }
 });
 
 bot.login(process.env.TOKEN);
