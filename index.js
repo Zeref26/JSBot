@@ -312,7 +312,7 @@ bot.on("message", (message) => {
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
             message.delete();
             let member = message.mentions.members.first();
-            if (message.mentions.members.length!=0)  {
+            if (args.length!=3)  {
                 message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
             } else {
                 message.channel.send("Aucune personne mentionnée.");
@@ -368,14 +368,12 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
-            if (message.mentions.members.length!=0) {
-                if (args.length>=3) {
-                    member.setNickname(args[2]+" "+args[3]);
-                } else if (args.length==2) {
-                    message.channel.send("Vous n'avez pas mis le nom.");
-                } else {
-                    message.channel.send("Vous n'avez pas mis le prénom et le nom.");
-                }
+            if (args.length>=3) {
+                member.setNickname(args[2]+" "+args[3]);
+            } else if (args.length==2) {
+                message.channel.send("Vous n'avez pas mis le nom.");
+            } else {
+                message.channel.send("Vous n'avez pas mis le prénom et le nom.");
             }
         }
     }
@@ -463,7 +461,7 @@ bot.on("message", (message) => {
             message.delete();
             const args = message.content.slice(1).trim().split(/ +/g);
             let mem = message.mentions.members.first();
-            if (message.mentions.members.length!=0)  {
+            if (args.length!=3)  {
                 message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
             } else {
                 message.channel.send("Aucune personne mentionnée.");
@@ -475,7 +473,7 @@ bot.on("message", (message) => {
             message.delete();
             let member = message.mentions.members.first();
             const args = message.content.slice(1).trim().split(/ +/g);
-            if (message.mentions.members.length!=0) {
+            if (args.length!=2) {
                 message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg) => {
                         let mes = "";
@@ -516,7 +514,7 @@ bot.on("message", (message) => {
             message.delete();
             let member = message.mentions.members.first();
             const args = message.content.slice(1).trim().split(/ +/g);
-            if (message.mentions.members.length!=0) {
+            if (args.length!=2) {
                 message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg) => {
                         let mes = "";
@@ -557,7 +555,7 @@ bot.on("message", (message) => {
             message.delete();
             let member = message.mentions.members.first();
             const args = message.content.slice(1).trim().split(/ +/g);
-            if (message.mentions.members.length!=0) {
+            if (args.length!=2) {
                 message.guild.channels.find('id',"532120912401530891").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg) => {
                         let mes = "";
