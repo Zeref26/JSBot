@@ -71,6 +71,12 @@ bot.on("message", (message) => {
                             if ((parseInt(mes)-1)>0) {
                                 let new_m = "```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name+" : "+(parseInt(mes)-1).toString()+" points\n```";
                                 msg.edit(new_m);
+                                if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>=5) {
+                                    message.guild.channels.find("name","plaintes-problèmes").send("Attention, "+member+" a moins de 10 Points Burst.");
+                                } else if (parseInt(mes)+parseInt(args[2])<=5) {
+                                    let admin = message.guild.roles.find('name','Admin');
+                                    message.guild.channels.find("name","plaintes-problèmes").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                                }
                                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde accéléré"));
                                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                                 message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
@@ -152,6 +158,12 @@ bot.on("message", (message) => {
                             if ((parseInt(mes)-10)>0) {
                                 let new_m = "```\n"+message.guild.members.find('id',message.author.id).roles.find('color',6524045).name+" : "+(parseInt(mes)-10).toString()+" points\n```";
                                 msg.edit(new_m);
+                                if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>=5) {
+                                    message.guild.channels.find("name","plaintes-problèmes").send("Attention, "+member+" a moins de 10 Points Burst.");
+                                } else if (parseInt(mes)+parseInt(args[2])<=5) {
+                                    let admin = message.guild.roles.find('name','Admin');
+                                    message.guild.channels.find("name","plaintes-problèmes").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                                }
                                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Zone neutre"));
                                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                                 message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',7492178).name);
@@ -234,6 +246,12 @@ bot.on("message", (message) => {
                         }
                         let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)+parseInt(args[2])).toString()+" points\n```";
                         msg.edit(new_m);
+                        if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>=5) {
+                            message.guild.channels.find("name","plaintes-problèmes").send("Attention, "+member+" a moins de 10 Points Burst.");
+                        } else if (parseInt(mes)+parseInt(args[2])<=5) {
+                            let admin = message.guild.roles.find('name','Admin');
+                            message.guild.channels.find("name","plaintes-problèmes").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                        }
                     }
                 });
             });
@@ -259,6 +277,12 @@ bot.on("message", (message) => {
                         }
                         let new_m = "```\n"+member.roles.find('color',6524045).name+" : "+(parseInt(mes)-parseInt(args[2])).toString()+" points\n```";
                         msg.edit(new_m);
+                        if (parseInt(mes)+parseInt(args[2])<=10 && parseInt(mes)+parseInt(args[2])>=5) {
+                            message.guild.channels.find("name","plaintes-problèmes").send("Attention, "+member+" a moins de 10 Points Burst.");
+                        } else if (parseInt(mes)+parseInt(args[2])<=5) {
+                            let admin = message.guild.roles.find('name','Admin');
+                            message.guild.channels.find("name","plaintes-problèmes").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                        }
                     }
                 });
             });
