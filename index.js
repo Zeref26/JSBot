@@ -194,6 +194,7 @@ bot.on("message", (message) => {
             const args = message.content.slice(1).trim().split(/ +/g);
             let member = message.mentions.members.first();
             if (member.roles.exists('color',6524045)) {
+                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
                 member.addRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
                 member.addRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
                 member.addRole(message.guild.roles.find('name',"Burst Linker"));
@@ -219,7 +220,7 @@ bot.on("message", (message) => {
                 }
                 message.guild.channels.find('name','général').send("Bienvenue à "+member+" dans le monde accéléré !");
                 message.guild.channels.find('id','527971056615686144').send("```\n"+member.roles.find('color',6524045).name+" : 20 points\n```");
-                message.guild.channels.find("name","ratio").send("```\n"+mem.roles.find('color',6524045).name+"\n0-0-0\n```");
+                message.guild.channels.find("name","ratio").send("```\n"+member.roles.find('color',6524045).name+"\n0-0-0\n```");
             } else {
                 message.channel.send("Vous avez oublié de mettre le rôle Prénom Nom.");
             }
