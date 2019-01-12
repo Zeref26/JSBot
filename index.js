@@ -638,7 +638,7 @@ bot.on("message", (message) => {
                     if (msg.content.includes("```\n"+member1.roles.find('color',6524045).name)) {
                         message1 = msg;
                         let m1 = ""+msg.content;
-                        let l1 = m.length-4;
+                        let l1 = m1.length-4;
                         for (let i = 4; i<l; i++) {
                             if (m1.charAt(i)==':') {
                                 for (let j = i+2; j<l-7; j++) {
@@ -649,7 +649,7 @@ bot.on("message", (message) => {
                     } else if (msg.content.includes("```\n"+member2.roles.find('color',6524045).name)) {
                         message2 = msg;
                         let m2 = ""+msg.content;
-                        let l2 = m.length-4;
+                        let l2 = m2.length-4;
                         for (let i = 4; i<l; i++) {
                             if (m2.charAt(i)==':') {
                                 for (let j = i+2; j<l-7; j++) {
@@ -662,7 +662,7 @@ bot.on("message", (message) => {
                 if (parseInt(mes1)-parseInt(args[2])>0) {
                     let new_m2 = "```\n"+member2.roles.find('color',6524045).name+" : "+(parseInt(mes2)+parseInt(args[2])).toString()+" points\n```";
                     message2.edit(new_m);
-                    let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes2)-parseInt(args[2])).toString()+" points\n```";
+                    let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes1)-parseInt(args[2])).toString()+" points\n```";
                     message1.edit(new_m);
                 } else {
                     message.channel.send("Vous n'avez pas suffisamment de Points Burst.");
