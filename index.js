@@ -659,10 +659,10 @@ bot.on("message", (message) => {
                         }
                     }
                 });
-                if (parseInt(mes1)-parseInt(args[2])>0) {
-                    let new_m2 = "```\n"+member2.roles.find('color',6524045).name+" : "+(parseInt(mes2)+parseInt(args[2])).toString()+" points\n```";
+                if (parseInt(mes2)-parseInt(args[2])>0) {
+                    let new_m2 = "```\n"+member2.roles.find('color',6524045).name+" : "+(parseInt(mes2)-parseInt(args[2])).toString()+" points\n```";
                     message2.edit(new_m2);
-                    let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes1)-parseInt(args[2])).toString()+" points\n```";
+                    let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes1)+parseInt(args[2])).toString()+" points\n```";
                     message1.edit(new_m1);
                 } else {
                     message.channel.send("Vous n'avez pas suffisamment de Points Burst.");
