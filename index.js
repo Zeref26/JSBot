@@ -328,6 +328,7 @@ bot.on("message", (message) => {
                                 message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
                                 message.guild.channels.find('name',"général").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
                             } else if(parseInt(mes)-parseInt(args[2])<=0) {
+                                let admin = message.guild.roles.find('name','Admin');
                                 message.guild.channels.find('id',"531211899803533335").send(admin+"\nC'est fini pour "+member+", il a perdu tous ses Points Burst ...");
                                 message.guild.channels.find('name',"général").send("C'est fini pour "+member+", il a perdu tous ses Points Burst ...");
                                 message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
