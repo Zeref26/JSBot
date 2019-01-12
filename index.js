@@ -639,9 +639,9 @@ bot.on("message", (message) => {
                         message1 = msg;
                         let m1 = ""+msg.content;
                         let l1 = m1.length-4;
-                        for (let i = 4; i<l; i++) {
+                        for (let i = 4; i<l1; i++) {
                             if (m1.charAt(i)==':') {
-                                for (let j = i+2; j<l-7; j++) {
+                                for (let j = i+2; j<l1-7; j++) {
                                     mes1 += m1.charAt(j);
                                 }
                             }
@@ -650,9 +650,9 @@ bot.on("message", (message) => {
                         message2 = msg;
                         let m2 = ""+msg.content;
                         let l2 = m2.length-4;
-                        for (let i = 4; i<l; i++) {
+                        for (let i = 4; i<l2; i++) {
                             if (m2.charAt(i)==':') {
-                                for (let j = i+2; j<l-7; j++) {
+                                for (let j = i+2; j<l2-7; j++) {
                                     mes2 += m2.charAt(j);
                                 }
                             }
