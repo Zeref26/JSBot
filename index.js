@@ -322,9 +322,24 @@ bot.on("message", (message) => {
                             msg.edit(new_m);
                             if (parseInt(mes)-parseInt(args[2])<=10 && parseInt(mes)-parseInt(args[2])>5) {
                                 message.guild.channels.find('id',"531211899803533335").send("Attention, "+member+" a moins de 10 Points Burst.");
+                                message.guild.channels.find('name',"général").send("Attention, "+member+" a moins de 10 Points Burst.");
                             } else if (parseInt(mes)-parseInt(args[2])<=5) {
                                 let admin = message.guild.roles.find('name','Admin');
                                 message.guild.channels.find('id',"531211899803533335").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                                message.guild.channels.find('name',"général").send(admin+"\nAttention, "+member+" a moins de 5 Points Burst.");
+                            } else if(parseInt(mes)-parseInt(args[2])==0) {
+                                message.guild.channels.find('id',"531211899803533335").send(admin+"\nC'est fini pour "+member+", il a perdu tous ses Points Burst ...");
+                                message.guild.channels.find('name',"général").send("C'est fini pour "+member+", il a perdu tous ses Points Burst ...");
+                                message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
+                                member.removeRole(message.guild.roles.find('name',"---------[HORS-RP]----------"));
+                                member.removeRole(message.guild.roles.find('name',"--------------[IDENTITE]--------------"));
+                                member.removeRole(message.guild.roles.find('name',"Burst Linker"));
+                                member.removeRole(message.guild.roles.find('name',"Niveau 1"));
+                                member.removeRole(message.guild.roles.find('name',"-------[COMPETENCES]-------"));
+                                member.removeRole(message.guild.roles.find('name',"-----------[GAMER TAG /NOM]----------"));
+                                member.removeRole(message.guild.roles.find('name',"------------------------------"));
+                                member.removeRole(message.guild.roles.find('name',"Monde réel"));
+                                member.removeRole(message.guild.roles.find('name',args[2]));
                             }
                         }
                     });
@@ -533,6 +548,28 @@ bot.on("message", (message) => {
                             }
                             let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+(parseInt(v)+1)+"-"+e+"-"+d+"\n```";
                             msg.edit(new_m);
+                            if ((parseInt(v)+1)==5) {
+                                message.guild.channels.find('id',"531211899803533335").send("Félicitations à "+member+" qui atteint le niveau 2 !");
+                                message.guild.channels.find('name',"général").send("Félicitations à "+member+" qui atteint le niveau 2 !");
+                                member.addRole(message.guild.roles.find('name','Niveau 2'));
+                                member.removeRole(message.guild.roles.find('name','Niveau 1'));
+                            } else if ((parseInt(v)+1)==10) {
+                                message.guild.channels.find('id',"531211899803533335").send("Félicitations à "+member+" qui atteint le niveau 3 !");
+                                message.guild.channels.find('name',"général").send("Félicitations à "+member+" qui atteint le niveau 3 !");
+                                member.addRole(message.guild.roles.find('name','Niveau 3'));
+                                member.removeRole(message.guild.roles.find('name','Niveau 2'));
+                            } else if ((parseInt(v)+1)==40) {
+                                message.guild.channels.find('id',"531211899803533335").send("Félicitations à "+member+" qui atteint le niveau 4 !");
+                                message.guild.channels.find('name',"général").send("Félicitations à "+member+" qui atteint le niveau 4 !");
+                                member.addRole(message.guild.roles.find('name','Niveau 4'));
+                                member.removeRole(message.guild.roles.find('name','Niveau 3'));
+                            } else if ((parseInt(v)+1)==100) {
+                                message.guild.channels.find('id',"531211899803533335").send("Félicitations à "+member+" qui atteint le niveau 5 !");
+                                message.guild.channels.find('name',"général").send("Félicitations à "+member+" qui atteint le niveau 5 !");
+                                member.addRole(message.guild.roles.find('name','Niveau 5'));
+                                member.removeRole(message.guild.roles.find('name','Niveau 4'));
+                            }
+                            message.channel.send("-padd "+member+" 5");
                         }
                     });
                 });
@@ -574,6 +611,7 @@ bot.on("message", (message) => {
                             }
                             let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
                             msg.edit(new_m);
+                            message.channel.send("-prem "+member+" 5");
                         }
                     });
                 });
