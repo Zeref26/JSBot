@@ -632,46 +632,50 @@ bot.on("message", (message) => {
         let message2;
         let mes1 = "";
         let mes2 = "";
-        if (args.length==3) {
-            bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
-                messages.forEach((msg)=> {
-                    if (msg.content.includes("```\n"+member1.roles.find('color',6524045).name)) {
-                        message1 = msg;
-                        let m1 = ""+msg.content;
-                        let l1 = m1.length-4;
-                        for (let i = 4; i<l1; i++) {
-                            if (m1.charAt(i)==':') {
-                                for (let j = i+2; j<l1-7; j++) {
-                                    mes1 += m1.charAt(j);
+        if (parseInt(args[2])>0) {
+            if (args.length==3) {
+                bot.channels.get("527971056615686144").fetchMessages({limit:99}).then(messages => {
+                    messages.forEach((msg)=> {
+                        if (msg.content.includes("```\n"+member1.roles.find('color',6524045).name)) {
+                            message1 = msg;
+                            let m1 = ""+msg.content;
+                            let l1 = m1.length-4;
+                            for (let i = 4; i<l1; i++) {
+                                if (m1.charAt(i)==':') {
+                                    for (let j = i+2; j<l1-7; j++) {
+                                        mes1 += m1.charAt(j);
+                                    }
+                                }
+                            }
+                        } else if (msg.content.includes("```\n"+member2.roles.find('color',6524045).name)) {
+                            message2 = msg;
+                            let m2 = ""+msg.content;
+                            let l2 = m2.length-4;
+                            for (let i = 4; i<l2; i++) {
+                                if (m2.charAt(i)==':') {
+                                    for (let j = i+2; j<l2-7; j++) {
+                                        mes2 += m2.charAt(j);
+                                    }
                                 }
                             }
                         }
-                    } else if (msg.content.includes("```\n"+member2.roles.find('color',6524045).name)) {
-                        message2 = msg;
-                        let m2 = ""+msg.content;
-                        let l2 = m2.length-4;
-                        for (let i = 4; i<l2; i++) {
-                            if (m2.charAt(i)==':') {
-                                for (let j = i+2; j<l2-7; j++) {
-                                    mes2 += m2.charAt(j);
-                                }
-                            }
-                        }
+                    });
+                    if (parseInt(mes2)-parseInt(args[2])>0) {
+                        let new_m2 = "```\n"+member2.roles.find('color',6524045).name+" : "+(parseInt(mes2)-parseInt(args[2])).toString()+" points\n```";
+                        message2.edit(new_m2);
+                        let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes1)+parseInt(args[2])).toString()+" points\n```";
+                        message1.edit(new_m1);
+                    } else {
+                        message.channel.send("Vous n'avez pas suffisamment de Points Burst.");
                     }
                 });
-                if (parseInt(mes2)-parseInt(args[2])>0) {
-                    let new_m2 = "```\n"+member2.roles.find('color',6524045).name+" : "+(parseInt(mes2)-parseInt(args[2])).toString()+" points\n```";
-                    message2.edit(new_m2);
-                    let new_m1 = "```\n"+member1.roles.find('color',6524045).name+" : "+(parseInt(mes1)+parseInt(args[2])).toString()+" points\n```";
-                    message1.edit(new_m1);
-                } else {
-                    message.channel.send("Vous n'avez pas suffisamment de Points Burst.");
-                }
-            });
-        } else if (args.length==2) {
-            message.channel.send("Veuillez entrer un montant à donner.");
+            } else if (args.length==2) {
+                message.channel.send("Veuillez entrer un montant à donner.");
+            } else {
+                message.channel.send("Il faut mentionner une personne et entrer un montant.\nExemple : -don "+message.guild.members.find('id',message.author.id)+" 10");
+            }
         } else {
-            message.channel.send("Il faut mentionner une personne et entrer un montant.\nExemple : -don "+message.guild.members.find('id',message.author.id)+" 10");
+            message.channel.send("Veuillez entrer un montant positif.");
         }
     }
 });
