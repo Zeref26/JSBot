@@ -5,7 +5,6 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
     bot.user.setActivity("Accel World");
     bot.user.setAvatar("img.png");
-    bot.user.setStatus('streaming');
     var interval = setInterval (function () {
         let date = new Date();
         let m = date.getMinutes()
