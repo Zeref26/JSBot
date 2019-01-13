@@ -139,7 +139,7 @@ bot.on("message", (message) => {
         }
     }
     if (mess == "unlimited burst link") {
-        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || (message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker") && message.guild.members.find('id',message.author.id).roles.exists('name',"Niveau 3"))) {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Monde accéléré")) {
                 message.delete();
             } else {
