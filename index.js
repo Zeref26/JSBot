@@ -405,7 +405,7 @@ bot.on("message", (message) => {
                     sf += 1;
                 }
             }
-            message.channel.send("Voici les informations du serveur : \n\n - Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n - Nombre d'avatars transparents : "+transparent+"\n\n En attente d'une fiche : "+(sf-3));
+            message.channel.send("Voici les informations du serveur : \n\nNombre de salons : "+message.guild.channels.size+"\nNombre de rôles : "+message.guild.roles.size+"\n\n- Nombre de Burst Linker : "+bl+"\n - Nombre d'avatars rouges : "+rouge+"\n - Nombre d'avatars bleus : "+bleu+"\n - Nombre d'avatars jaunes : "+jaune+"\n - Nombre d'avatars verts : "+vert+"\n - Nombre d'avatars violets : "+violet+"\n - Nombre d'avatars noirs : "+noir+"\n - Nombre d'avatars blancs : "+blanc+"\n - Nombre d'avatars métalliques : "+metal+"\n - Nombre d'avatars transparents : "+transparent+"\n\n En attente d'une fiche : "+(sf-3));
         }
     }
     if(message.content.startsWith("-nick")){
@@ -718,4 +718,4 @@ bot.on("message", (message) => {
     }
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTAzMzQ1MTA4NTc4NzI5OTg1.Dw2SOQ.Qmth_yVv8m8afU3a7d9FAx-PQck");
