@@ -569,7 +569,7 @@ bot.on("message", (message) => {
                                 member.addRole(message.guild.roles.find('name','Niveau 5'));
                                 member.removeRole(message.guild.roles.find('name','Niveau 4'));
                             }
-                            message.channel.send("-padd "+member+" 5");
+                            message.channel.send("-padd "+member+" 10");
                         }
                     });
                 });
@@ -611,7 +611,7 @@ bot.on("message", (message) => {
                             }
                             let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
                             msg.edit(new_m);
-                            message.channel.send("-prem "+member+" 5");
+                            message.channel.send("-prem "+member+" 10");
                         }
                     });
                 });
