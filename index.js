@@ -45,6 +45,12 @@ bot.on("guildMemberRemove", member => {
     bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"général").send(member+" a perdu tous ses Points Burst. Adieu "+member);
 });
 
+bot.on("guildMemberAvailable", member => {
+    let mess = bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"dernières-connections").send("L");
+    bot.guilds.find('name',"[AW]- New Generation").channels.find('name',"général").send(member.displayName+" : "+mess.createdAt);
+    mess.delete();
+});
+
 bot.on("message", (message) => {
     let mess = message.content.toLowerCase();
     if (!(message.author.id == "503345108578729985" || message.channel.name == "historique")) {
@@ -189,6 +195,21 @@ bot.on("message", (message) => {
         } else {
             message.delete();
         }
+    }
+    if (mess == "direct link") {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Burst Linker")) {
+            if (message.guild.members.find('id',message.author.id).roles.exists('name',"Zone neutre")) {
+                message.delete();
+            } else {
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"VrChat++"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"VrChat++"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"VrChat++"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+                message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"VrChat++"));
+                message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
+
     }
     if(message.content.startsWith("-valide")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
@@ -569,7 +590,7 @@ bot.on("message", (message) => {
                                 member.addRole(message.guild.roles.find('name','Niveau 5'));
                                 member.removeRole(message.guild.roles.find('name','Niveau 4'));
                             }
-                            message.channel.send("-padd "+member+" 10");
+                            message.channel.send("-padd "+member+" 5");
                         }
                     });
                 });
@@ -611,7 +632,7 @@ bot.on("message", (message) => {
                             }
                             let new_m = "```\n"+member.roles.find('color',6524045).name+"\n"+v+"-"+e+"-"+(parseInt(d)+1)+"\n```";
                             msg.edit(new_m);
-                            message.channel.send("-prem "+member+" 10");
+                            message.channel.send("-prem "+member+" 5");
                         }
                     });
                 });
