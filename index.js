@@ -209,7 +209,24 @@ bot.on("message", (message) => {
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
                 message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"VrChat++"));
                 message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"Monde réel"));
-
+            }
+        } else {
+            message.delete();
+        }
+    }
+    if (mess == "direct out") {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Monde réel")) {
+            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"VrChat++"));
+            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"VrChat++"));
+            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"VrChat++"));
+            message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
+            message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"VrChat++"));
+        } else {
+            message.delete();
+        }
     }
     if(message.content.startsWith("-valide")){
         if(message.guild.members.find('id',message.author.id).roles.exists('name',"Admin")) {
