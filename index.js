@@ -219,7 +219,7 @@ bot.on("message", (message) => {
         }
     }
     if (mess == "link out") {
-        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"Monde réel")) {
+        if (message.guild.members.find('id',message.author.id).roles.exists('name',"Admin") || message.guild.members.find('id',message.author.id).roles.exists('name',"VrChat++")) {
             message.guild.members.find('id',message.author.id).addRole(message.guild.roles.find('name',"Monde réel"));
             message.guild.members.find('id',message.author.id).removeRole(message.guild.roles.find('name',"VrChat++"));
             message.guild.members.find('id',message.author.id).setNickname(message.guild.members.find('id',message.author.id).roles.find('color',6524045).name);
