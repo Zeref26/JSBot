@@ -14,7 +14,9 @@ class ClearCommand extends Commando.Command {
     async run(message, args) {
         message.delete();
         const arg = message.content.slice(1).trim().split(/ +/g);
-        message.channel.bulkDelete(arg.slice(1).join(" "));
+        if (message.guild.members.find('id',message.author.id).roles.exists('name','Admin')) {
+            message.channel.bulkDelete(arg.slice(1).join(" "));
+        }
     }
 }
 
