@@ -19,7 +19,7 @@ class AskCommand extends Commando.Command {
         const mem = message.guild.members.find('id',message.author.id).displayName;
         const ville = arg.slice(3).join(" ");
         const em1 = message.guild.emojis.find('name', res1);
-        message.guild.channels.find('id', "504336619105681408").send("@everyone, "+mem+" a besoin de "+nb1+ " "+em1+" sur sa ville "+ville+".");
+        message.guild.channels.find('id', "576534803407568900").send("@everyone, "+mem+" a besoin de "+nb1+ " "+em1+" sur sa ville "+ville+".");
     }
 }
 
