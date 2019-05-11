@@ -36,6 +36,7 @@ class PlayerInfoCommand extends Commando.Command {
             case "téos"||"teos" : monde = 116; break;
             case "amphipolis" : monde = 117; break;
         }
+        message.channel.send("Monde = "+monde);
         var str = '';
         var req = https.request('https://fr'+monde+'.grepolis.com/data/players.txt', function(response) {
             response.on('data', function (chunk) {
