@@ -17,24 +17,25 @@ class AllianceInfoCommand extends Commando.Command {
         const arg = message.content.slice(1).trim().split(/ +/g);
         if (arg.length >= 2) {
         let monde;
+        let monde_nom;
         switch (arg[1].toLowerCase()) {
-            case "achille" : monde = 32; break;
-            case "bellérophon"||"bellerophon" : monde = 37; break;
-            case "hyperborea" : monde = 39; break;
-            case "dion" : monde = 104; break;
-            case "épidamne"||"epidamne" : monde = 105; break;
-            case "gortyne" : monde = 106; break;
-            case "héliopolis"||"heliopolis" : monde = 107; break;
-            case "istros" : monde = 108; break;
-            case "kastoria" : monde = 109; break;
-            case "lentini" : monde = 110; break;
-            case "modon" : monde = 111; break;
-            case "naucratis" : monde = 112; break;
-            case "oreos"||"oréos" : monde = 113; break;
-            case "pharès"||"phares" : monde = 114; break;
-            case "sidé"||"side" : monde = 115; break;
-            case "téos"||"teos" : monde = 116; break;
-            case "amphipolis" : monde = 117; break;
+            case "achille" : monde = 32; monde_nom = "Achille"; break;
+            case "bellérophon"||"bellerophon" : monde = 37; monde_nom = "Belléropho"; break;
+            case "hyperborea" : monde = 39; monde_nom = "Hyperborea"; break;
+            case "dion" : monde = 104; monde_nom = "Dion"; break;
+            case "épidamne"||"epidamne" : monde = 105; monde_nom = "Epidamne"; break;
+            case "gortyne" : monde = 106; monde_nom = "Gortyne"; break;
+            case "héliopolis"||"heliopolis" : monde = 107; monde_nom = "Héliopolis"; break;
+            case "istros" : monde = 108; monde_nom = "Istros"; break;
+            case "kastoria" : monde = 109; monde_nom = "Kastoria"; break;
+            case "lentini" : monde = 110; monde_nom = "Lentini"; break;
+            case "modon" : monde = 111; monde_nom = "Modon"; break;
+            case "naucratis" : monde = 112; monde_nom = "Naucratis"; break;
+            case "oreos"||"oréos" : monde = 113; monde_nom = "Oréos"; break;
+            case "pharès"||"phares" : monde = 114; monde_nom = "Pharès"; break;
+            case "sidé"||"side" : monde = 115; monde_nom = "Sidé"; break;
+            case "téos"||"teos" : monde = 116; monde_nom = "Téos"; break;
+            case "amphipolis" : monde = 117; monde_nom = "Amphipolis"; break;
         }
         var str = '';
         var req = https.request('https://fr'+monde+'.grepolis.com/data/alliances.txt', function(response) {
@@ -176,7 +177,7 @@ class AllianceInfoCommand extends Commando.Command {
                             message.channel.send({embed:{
                                 color: 0xFF0000,
                                 author: {
-                                    name: "Informations de "+param,
+                                    name: "Informations de "+param+" sur "+monde_nom,
                                     icon_url: message.channel.client.user.avatarURL
                                 },
                                 fields: [{
@@ -209,7 +210,7 @@ class AllianceInfoCommand extends Commando.Command {
                             message.channel.send({embed:{
                                 color: 0xFF0000,
                                 author: {
-                                    name: "Informations de "+param,
+                                    name: "Informations de "+param+" sur "+monde_nom,
                                     icon_url: message.channel.client.user.avatarURL
                                 },
                                 fields: [{
@@ -246,7 +247,7 @@ class AllianceInfoCommand extends Commando.Command {
                             message.channel.send({embed:{
                                 color: 0xFF0000,
                                 author: {
-                                    name: "Informations de "+param,
+                                    name: "Informations de "+param+" sur "+monde_nom,
                                     icon_url: message.channel.client.user.avatarURL
                                 },
                                 fields: [{
@@ -287,7 +288,7 @@ class AllianceInfoCommand extends Commando.Command {
                             message.channel.send({embed:{
                                 color: 0xFF0000,
                                 author: {
-                                    name: "Informations de "+param,
+                                    name: "Informations de "+param+" sur "+monde_nom,
                                     icon_url: message.channel.client.user.avatarURL
                                 },
                                 fields: [{
@@ -332,7 +333,7 @@ class AllianceInfoCommand extends Commando.Command {
                             message.channel.send({embed:{
                                 color: 0xFF0000,
                                 author: {
-                                    name: "Informations de "+param,
+                                    name: "Informations de "+param+" sur "+monde_nom,
                                     icon_url: message.channel.client.user.avatarURL
                                 },
                                 fields: [{
