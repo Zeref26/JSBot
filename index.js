@@ -13,4 +13,4 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
 });
 
-bot.login(config.token);
+bot.login(process.env.TOKEN);
