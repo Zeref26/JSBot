@@ -20,21 +20,28 @@ class AllianceInfoCommand extends Commando.Command {
         let monde_nom;
         switch (arg[1].toLowerCase()) {
             case "achille" : monde = 32; monde_nom = "Achille"; break;
-            case "bellérophon"||"bellerophon" : monde = 37; monde_nom = "Belléropho"; break;
+            case "bellérophon" : monde = 37; monde_nom = "Belléropho"; break;
+            case "bellerophon" : monde = 37; monde_nom = "Belléropho"; break;
             case "hyperborea" : monde = 39; monde_nom = "Hyperborea"; break;
             case "dion" : monde = 104; monde_nom = "Dion"; break;
-            case "épidamne"||"epidamne" : monde = 105; monde_nom = "Epidamne"; break;
+            case "épidamne" : monde = 105; monde_nom = "Epidamne"; break;
+            case "epidamne" : monde = 105; monde_nom = "Epidamne"; break;
             case "gortyne" : monde = 106; monde_nom = "Gortyne"; break;
-            case "héliopolis"||"heliopolis" : monde = 107; monde_nom = "Héliopolis"; break;
+            case "héliopolis" : monde = 107; monde_nom = "Héliopolis"; break;
+            case "heliopolis" : monde = 107; monde_nom = "Héliopolis"; break;
             case "istros" : monde = 108; monde_nom = "Istros"; break;
             case "kastoria" : monde = 109; monde_nom = "Kastoria"; break;
             case "lentini" : monde = 110; monde_nom = "Lentini"; break;
             case "modon" : monde = 111; monde_nom = "Modon"; break;
             case "naucratis" : monde = 112; monde_nom = "Naucratis"; break;
-            case "oreos"||"oréos" : monde = 113; monde_nom = "Oréos"; break;
-            case "pharès"||"phares" : monde = 114; monde_nom = "Pharès"; break;
-            case "sidé"||"side" : monde = 115; monde_nom = "Sidé"; break;
-            case "téos"||"teos" : monde = 116; monde_nom = "Téos"; break;
+            case "oreos" : monde = 113; monde_nom = "Oréos"; break;
+            case "oréos" : monde = 113; monde_nom = "Oréos"; break;
+            case "pharès" : monde = 114; monde_nom = "Pharès"; break;
+            case "phares" : monde = 114; monde_nom = "Pharès"; break;
+            case "sidé" : monde = 115; monde_nom = "Sidé"; break;
+            case "side" : monde = 115; monde_nom = "Sidé"; break;
+            case "téos" : monde = 116; monde_nom = "Téos"; break;
+            case "teos" : monde = 116; monde_nom = "Téos"; break;
             case "amphipolis" : monde = 117; monde_nom = "Amphipolis"; break;
         }
         var str = '';
