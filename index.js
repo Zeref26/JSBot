@@ -4,7 +4,6 @@ const config = require('./config.json');
 const prefix = config.prefix;
 
 bot.registry.registerGroup('random', 'Random');
-bot.registry.registerGroup('moderation', 'Moderation');
 bot.registry.registerGroup('grepolis', 'Grepolis');
 bot.registry.registerGroup('messaging', 'Messaging');
 bot.registry.registerDefaults();
@@ -14,4 +13,4 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
 });
 
-bot.login(process.env.TOKEN);
+bot.login(config.token);

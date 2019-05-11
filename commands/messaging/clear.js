@@ -14,8 +14,10 @@ class ClearCommand extends Commando.Command {
     async run(message, args) {
         message.delete();
         const arg = message.content.slice(1).trim().split(/ +/g);
-        if (message.guild.members.find('id',message.author.id).roles.exists('name','Admin')) {
+        if (message.guild.members.find('id', message.author.id).roles.exists('name', 'Modérateur Chat')) {
             message.channel.bulkDelete(arg.slice(1).join(" "));
+        } else {
+            message.channel.send("Vous n'avez pas la permission d'utiliser !clear");
         }
     }
 }

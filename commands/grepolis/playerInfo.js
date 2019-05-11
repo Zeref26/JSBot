@@ -14,25 +14,46 @@ class PlayerInfoCommand extends Commando.Command {
 
     async run(message, args) {
         message.delete();
+        const arg = message.content.slice(2).trim().split(/ +/g);
+        if (arg.length >= 2) {
+        let monde;
+        switch (arg[1].toLowerCase()) {
+            case "achille" : monde = 32; break;
+            case "bellérophon"||"bellerophon" : monde = 37; break;
+            case "hyperborea" : monde = 39; break;
+            case "dion" : monde = 104; break;
+            case "épidamne"||"epidamne" : monde = 105; break;
+            case "gortyne" : monde = 106; break;
+            case "héliopolis"||"heliopolis" : monde = 107; break;
+            case "istros" : monde = 108; break;
+            case "kastoria" : monde = 109; break;
+            case "lentini" : monde = 110; break;
+            case "modon" : monde = 111; break;
+            case "naucratis" : monde = 112; break;
+            case "oreos"||"oréos" : monde = 113; break;
+            case "pharès"||"phares" : monde = 114; break;
+            case "sidé"||"side" : monde = 115; break;
+            case "téos"||"teos" : monde = 116; break;
+            case "amphipolis" : monde = 117; break;
+        }
         var str = '';
-        var req = https.request('https://fr113.grepolis.com/data/players.txt', function(response) {
+        var req = https.request('https://fr'+monde+'.grepolis.com/data/players.txt', function(response) {
             response.on('data', function (chunk) {
                 str += chunk;
             });
             response.on('end', function () {
                 var str2 = '';
-                var req2 = https.request('https://fr113.grepolis.com/data/alliances.txt', function(response2) {
+                var req2 = https.request('https://fr'+monde+'.grepolis.com/data/alliances.txt', function(response2) {
                     response2.on('data', function (chunk) {
                         str2 += chunk;
                     });
                     response2.on('end', function () {
                         var str3 = '';
-                        var req3 = https.request('https://fr113.grepolis.com/data/towns.txt', function(response3) {
+                        var req3 = https.request('https://fr'+monde+'.grepolis.com/data/towns.txt', function(response3) {
                             response3.on('data', function (chunk) {
                                 str3 += chunk;
                             });
                             response3.on('end', function () {
-                                const arg = message.content.slice(1).trim().split(/ +/g);
                                 var data = str;
                                 var mot = "";
                                 var donnees = [];
@@ -45,7 +66,7 @@ class PlayerInfoCommand extends Commando.Command {
                                     }
                                 }
                                 var i;
-                                var param = (String)(arg.slice(1).join(" "));
+                                var param = (String)(arg.slice(2).join(" "));
                                 var par = "";
                                 for(i = 0; i<param.length; i++){
                                     if (param.charAt(i)==" "){
@@ -456,6 +477,9 @@ class PlayerInfoCommand extends Commando.Command {
                 }).end();
             });
         }).end();
+        } else {
+            message.author.send("Erreur sur la commande, !player Monde Pseudo \n N'oubliez pas les majuscules.");
+        }
     }
 }
 
