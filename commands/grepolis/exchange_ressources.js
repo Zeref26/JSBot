@@ -42,7 +42,7 @@ class ExchangeRessourceCommand extends Commando.Command {
         const ville = arg.slice(6).join(" ");
         const em1 = message.guild.emojis.find('name', res1);
         const em2 = message.guild.emojis.find('name', res2);
-        message.guild.channels.find('id', "504337004792774656").send("@everyone, "+mem+" souhaite passer "+nb1+ " "+em1+" contre "+nb2+" "+em2+" sur sa ville "+ville+" dans le monde "+monde+".");
+        message.guild.channels.find('id', "576534825918267413").send("@everyone, "+mem+" souhaite passer "+nb1+ " "+em1+" contre "+nb2+" "+em2+" sur sa ville "+ville+" dans le monde "+monde+".");
     }
 }
 
