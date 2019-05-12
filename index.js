@@ -28,6 +28,4 @@ bot.on('presenceUpdate', (o_member,n_member) => {
     }
 });
 
-bot.on('')
-
 bot.login(process.env.TOKEN);
