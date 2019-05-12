@@ -16,17 +16,17 @@ bot.on('ready', () => {
 bot.on('presenceUpdate', (o_member,n_member) => {
     if (o_member.presence.status == 'idle') { 
         if (n_member.presence.status == 'online' || n_member.presence.status == 'dnd') {
-            bot.channels.find('id', "577115977083256833").send(n_member.displayName+" n'est plus AFK.");
+            bot.channels.find('id', "577115977083256833").send(n_member+" n'est plus AFK.");
         }
         if (n_member.presence.status == 'offline') {
-            bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est déconnecté.");
+            bot.channels.find('id', "577115977083256833").send(n_member+" s'est déconnecté.");
         }
     } else if (n_member.presence.status == 'offline') {
-        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est déconnecté.");
+        bot.channels.find('id', "577115977083256833").send(n_member+" s'est déconnecté.");
     } else if (o_member.presence.status == 'offline') {
-        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est connecté.");
+        bot.channels.find('id', "577115977083256833").send(n_member+" s'est connecté.");
     } else if (o_member.presence.status == 'online' && n_member.presence.status == 'idle') {
-        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" est AFK.");
+        bot.channels.find('id', "577115977083256833").send(n_member+" est AFK.");
     }
 });
 
