@@ -1,5 +1,7 @@
 const Discord = require('discord.js-commando');
 const bot = new Discord.Client();
+const Discord2 = require('discord.js');
+const bot2 = new Discord2.Client();
 const config = require('./config.json');
 const prefix = config.prefix;
 
@@ -13,20 +15,20 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
 });
 
-bot.on('presenceUpdate', (o_member,n_member) => {
+bot2.on('presenceUpdate', (o_member,n_member) => {
     if (o_member.presence.status == 'idle') { 
         if (n_member.presence.status == 'online' || n_member.presence.status == 'dnd') {
-            bot.channels.find('id', "577115977083256833").send(n_member+" n'est plus AFK.");
+            bot.channels.find('id', "577115977083256833").send(n_member.displayName+" n'est plus AFK.");
         }
         if (n_member.presence.status == 'offline') {
-            bot.channels.find('id', "577115977083256833").send(n_member+" s'est déconnecté.");
+            bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est déconnecté.");
         }
     } else if (n_member.presence.status == 'offline') {
-        bot.channels.find('id', "577115977083256833").send(n_member+" s'est déconnecté.");
+        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est déconnecté.");
     } else if (o_member.presence.status == 'offline') {
-        bot.channels.find('id', "577115977083256833").send(n_member+" s'est connecté.");
+        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" s'est connecté.");
     } else if (o_member.presence.status == 'online' && n_member.presence.status == 'idle') {
-        bot.channels.find('id', "577115977083256833").send(n_member+" est AFK.");
+        bot.channels.find('id', "577115977083256833").send(n_member.displayName+" est AFK.");
     }
 });
 
