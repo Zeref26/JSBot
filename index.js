@@ -13,4 +13,8 @@ bot.on('ready', () => {
     console.log('Bot is ready !');
 });
 
+bot.on('guildMemberAvailable', member) {
+    bot.channels.find('id', "577115977083256833").send(member+" s'est connecté.");
+}
+
 bot.login(process.env.TOKEN);
